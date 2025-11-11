@@ -6,14 +6,15 @@
 #exec(LW_enb&0&%RMLST)
 #font(WF,WF,YF)
 
-#ebox[%L](x:180,y:30,w:100%-380,h:260)
-#ebox[%E](x:180,y:24,w:100%-380,h:30)
+#ebox[%L](x:160,y:30,w:100%-340,h:160)
+#ebox[%E](x:160,y:24,w:100%-340,h:30)
 #pan[%MPN](%L[x:0,y:0,w:100%,h:100%],8)
-#ctxt[%TIT](%E[x:0,y:12,w:100%,h:10],{},"Discord server")
+#ctxt[%TIT](%E[x:0,y:0,w:100%,h:10],{},"Discord server")
 
 #font(WF,YF,WF)
-#txt[%L_NAME](%L[x:20,y:44,w:100,h:24],{},"https://discord.gg/ZzUVRjA")
+#txt[%L_NAME](%L[x:20,y:44,w:100%,h:24],{},"Join American Conquest discord community")
+#txt[%L_NAME](%L[x:20,y:84,w:100%,h:24],{},"https://discord.gg/ZzUVRjA")
 
-#sbtn[%B_RGST](%L[x:135,y:100%+5,w:100,h:24],{<? IF backto ?>GW|<? backto ?><? ELSE ?>LW_file&Internet/Cash/cancel.cml<? END ?>},"Cancel")
+#sbtn[%B_RGST](%L[x:135,y:100%+5,w:100,h:24],{<? IF backto ?>GW|<? backto ?><? ELSE ?>LW_file&Internet/Cash/cancel.cml<? END ?>},"Close")
 
 <NGDLG>
