@@ -13,7 +13,10 @@
 
 #font(WF,YF,WF)
 #txt[%L_NAME](%L[x:20,y:44,w:100%,h:24],{},"Join American Conquest discord community")
-#txt[%L_NAME](%L[x:20,y:84,w:100%,h:24],{},"https://discord.gg/ZzUVRjA")
+
+//#apan(%BOTTOM[x:354,y:1,w:95,h:13],{GW|url&http://goodgame.ru/cup/<? gg_cup.id | cmd ?>/&from=enter},15)
+#apan(%L[x:20,y:84,w:100%,h:24],{GW|url&https://discord.gg/ZzUVRjA},15)
+//#txt[%L_NAME](%L[x:20,y:84,w:100%,h:24],{},"https://discord.gg/ZzUVRjA")
 
 #sbtn[%B_RGST](%L[x:135,y:100%+5,w:100,h:24],{<? IF backto ?>GW|<? backto ?><? ELSE ?>LW_file&Internet/Cash/cancel.cml<? END ?>},"Close")
 
