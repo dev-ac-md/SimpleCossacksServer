@@ -302,7 +302,11 @@ sub room_info_dgl {
 
 sub discord_dlg {
   my($self, $h, $p) = @_;
-  $h->show('discord_dlg.cml', { });
+  my $backto;
+  if($p->{BACKTO} && $p->{BACKTO} eq 'user_details') {
+    $backto = 'open&user_details.dcml&ID=' . $h->connection->data->{id}; 
+  }
+  $h->show('discord_dlg.cml', { backto => $backto });
 }
 
 sub _time_interval {
