@@ -12,7 +12,7 @@ use feature 'state';
 my @PUBLIC = qw[
   enter try_enter startup resize games rooms_table_dgl new_room_dgl reg_new_room
   join_game join_pl_cmd user_details users_list direct direct_ping 
-  direct_join room_info_dgl started_room_message
+  direct_join room_info_dgl discord_dlg started_room_message
   tournaments lcn_registration_dgl gg_cup_thanks_dgl
 ];
 
@@ -298,6 +298,11 @@ sub room_info_dgl {
   } else {
     $h->show('room_info_dgl.cml', { room => $room, room_time => $self->_time_interval($room->{started} || $room->{ctime}), backto => $backto });
   }
+}
+
+sub discord_dlg {
+  my($self, $h, $p) = @_;
+  $h->show('discord_dlg.cml', { });
 }
 
 sub _time_interval {
