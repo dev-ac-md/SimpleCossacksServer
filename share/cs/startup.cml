@@ -13,7 +13,7 @@
 #btn(%BOTTOM[x:5,y:4,w:80,h:28],{GW|open&join_game.dcml&ASTATE=<%ASTATE>^VE_RID=<%RL_ID>},"Join")
 #btn(%BOTTOM[x:95,y:4,w:80,h:28],{GW|open&room_info_dgl.dcml&VE_RID=<%RL_ID>},"Info")
 #btn(%BOTTOM[x:185,y:4,w:80,h:28],{GW|open&new_room_dgl.dcml&ASTATE=<%ASTATE>|LW_lockall},"New")
-#btn(%BOTTOM[x:275,y:4,w:80,h:28],{GW|open&discord_dlg.dcml&&VE_RID=<%RL_ID>},"Discord")
+#btn(%BOTTOM[x:275,y:4,w:80,h:28],{GW|open&discord_dlg.dcml&&VE_RID=<%RL_ID>},"Support")
 //<?~ IF !gg_cup || gg_cup.started ?>
 //#btn(%BOTTOM[x:643,y:4,w:106,h:28],{GW|open&tournaments.dcml&option=total|LW_lockall},"Tournaments")
 //<?~ ELSE ?>
