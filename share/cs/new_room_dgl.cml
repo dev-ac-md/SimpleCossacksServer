@@ -4,10 +4,10 @@
 #exec(LW_enb&0&%RMLST)
 #font(WF,WF,YF)
 
-#ebox[%L](x:180,y:20,w:100%-380,h:165)
-#ebox[%E](x:180,y:14,w:100%-380,h:30)
+#ebox[%L](x:180,y:20,w:100%-330,h:215)
+#ebox[%E](x:180,y:14,w:100%-330,h:30)
 #pan[%MPN](%L[x:0,y:0,w:100%,h:100%],8)
-#ctxt[%TIT](%E[x:0,y:12,w:100%,h:10],{},"Create new game")
+#ctxt[%TIT](%E[x:0,y:0,w:100%,h:10],{},"Create new game")
 
 #font(WF,YF,WF)
 #txt[%L_NAME](%L[x:20,y:44,w:100,h:24],{},"Game Title")
@@ -26,16 +26,16 @@
 #font(YF,WF,WF)
 #cbb[%E_MAXPL](%L[x:130,y:95,w:100%-150,h:24],{%GV_VE_MAX_PL},2,3,4,5,6,7,5)
 
-#font(WF,YF,WF)
-#txt[%L_LEVEL](%L[x:20,y:123,w:100,h:24],{},"Level")
-#font(YF,WF,WF)
-#cbb[%E_LEVEL](%L[x:130,y:121,w:100%-150,h:24],{%GV_VE_LEVEL},--,Easy,Normal,Hard,0)
+#font(Y1F18,Y1F18,Y1F18)
+#txt[%L_TYPE](%L[x:20,y:123,w:150,h:24],{},"Type")
+#font(WF18,WF18,WF18)
+#cbb[%E_TYPE](%L[x:130,y:121,w:100%-150,h:24],{%GV_VE_TYPE},Ordinal,Battle,0)
 
 #font(SYF,SWF,SWF)
-#txt(%L[x:20,y:146,w:100%,h:24],{},"NOTE: You shall have a PUBLIC ip address to create server")
+#txt(%L[x:20,y:146,w:100%-20,h:24],{},"NOTE: You shall have netpatch2.2 or PUBLIC ip or VPN or port forwarding")
 
 #font(YF,WF,YF)
 
-#sbtn[%B_RGST](%L[x:43,y:100%+5,w:100,h:24],{GW|open&reg_new_room.dcml&ASTATE=<%ASTATE>^VE_TITLE=<%GV_VE_TITLE>^VE_MAX_PL=<%GV_VE_MAX_PL>^VE_PASSWD=<%GV_VE_PASSWD>^VE_LEVEL=<%GV_VE_LEVEL>|LW_lockall},"Create")
-#sbtn[%B_RGST](%L[x:230,y:100%+5,w:100,h:24],{LW_file&Internet/Cash/cancel.cml},"Cancel")
+#sbtn[%B_RGST](%L[x:23,y:100%-25,w:100,h:24],{GW|open&reg_new_room.dcml&ASTATE=<%ASTATE>^VE_TITLE=<%GV_VE_TITLE>^VE_MAX_PL=<%GV_VE_MAX_PL>^VE_PASSWD=<%GV_VE_PASSWD>^VE_TYPE=<%GV_VE_TYPE>^VE_LEVEL=<%GV_VE_LEVEL>|LW_lockall},"Create")
+#sbtn[%B_RGST](%L[x:190,y:100%-25,w:100,h:24],{LW_file&Internet/Cash/cancel.cml},"Cancel")
 <NGDLG>
