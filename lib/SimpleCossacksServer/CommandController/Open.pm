@@ -12,7 +12,7 @@ use feature 'state';
 my @PUBLIC = qw[
   enter try_enter startup resize games rooms_table_dgl new_room_dgl reg_new_room
   join_game join_pl_cmd user_details users_list direct direct_ping 
-  direct_join room_info_dgl discord_dlg started_room_message
+  direct_join room_info_dgl discord_dlg register started_room_message
   tournaments lcn_registration_dgl gg_cup_thanks_dgl
 ];
 
@@ -31,7 +31,10 @@ sub enter {
     my $id = $h->connection->data->{account}{id};
     $h->show('enter.cml', { type => $type, nick => $nick, id => $id, logged_in => 1 });
   } else {
-    my $type = $p->{TYPE} if $p->{TYPE} && ($p->{TYPE} eq 'LCN' || $p->{TYPE} eq 'WCL');
+    my $type = $p->{TYPE} if $p->{TYPE} && ($p->{TYPE} eq 'anonymous_view' || $p->{TYPE} eq 'login_view');
+    if (!$type) {
+      $type = 'anonymous_view';
+    }
     $h->show('enter.cml', { type => $type });
   }
 }
@@ -307,6 +310,12 @@ sub discord_dlg {
     $backto = 'open&user_details.dcml&ID=' . $h->connection->data->{id}; 
   }
   $h->show('discord_dlg.cml', { backto => $backto });
+}
+
+sub register {
+  my($self, $h, $p) = @_;
+  
+  $h->show('register.cml', {});
 }
 
 sub _time_interval {

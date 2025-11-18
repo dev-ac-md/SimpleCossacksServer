@@ -36,6 +36,8 @@
 
 #font(YF,WF,YF)
 
+<?~ SET MAX_PLAYERS = "2" ~?>
+
 #sbtn[%B_RGST](%L[x:23,y:100%-25,w:100,h:24],{GW|open&reg_new_room.dcml&ASTATE=<%ASTATE>^VE_TITLE=<%GV_VE_TITLE>^VE_MAX_PL=<%GV_VE_MAX_PL>^VE_PASSWD=<%GV_VE_PASSWD>^VE_TYPE=<%GV_VE_TYPE>^VE_LEVEL=<%GV_VE_LEVEL>|LW_lockall},"Create")
 #sbtn[%B_RGST](%L[x:190,y:100%-25,w:100,h:24],{LW_file&Internet/Cash/cancel.cml},"Cancel")
 <NGDLG>
