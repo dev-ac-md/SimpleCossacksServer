@@ -39,7 +39,9 @@ sub enter {
   }
 }
 
-my $ua = LWP::UserAgent->new(agent => 'cossacks-server.net bot');
+my $users = [{login => 'ac-dev-md'}];
+
+my $ua = LWP::UserAgent->new();
 sub try_enter {
   my($self, $h, $p) = @_;
   my $nick = $p->{NICK};
@@ -60,64 +62,113 @@ sub try_enter {
       $h->server->post_account_action($h, 'enter');
       $self->_success_enter($h, $p, $nick);
     } else {
-      $h->show('enter.cml');
+      $h->show('enter.cml');  
     }
-  } elsif($type eq 'LCN' || $type eq 'WCL') {
-    my $host = $h->server->config->{lc($type) . "_host"};
-    my $server_name = $h->server->config->{lc($type) . "_server_name"} // $host;
-    my $key = $type eq 'LCN' ? $h->server->config->{lcn_key} : $h->server->config->{wcl_key};
-    my $password = $p->{PASSWORD};
+  } 
+  # elsif($type eq 'LCN' || $type eq 'WCL') {
+  #   my $host = $h->server->config->{lc($type) . "_host"};
+  #   my $server_name = $h->server->config->{lc($type) . "_server_name"} // $host;
+  #   my $key = $type eq 'LCN' ? $h->server->config->{lcn_key} : $h->server->config->{wcl_key};
+  #   my $password = $p->{PASSWORD};
+  #   if(!defined($nick) || $nick eq '') {
+  #     $h->show('enter.cml', { error => 'enter nick', type => $type });
+  #   } elsif(!defined($nick) || $nick eq '') {
+  #     $h->show('enter.cml', { error => 'enter password', type => $type });
+  #   } else {
+  #     my $url = "http://$host/api/server.php";
+  #     my $response = $ua->post($url, { 
+  #       action => 'logon',
+  #       key => $key,
+  #       login => $nick,
+  #       password => $password,
+  #     }, X_Client_IP => $h->connection->ip ); 
+
+  #     unless($response->is_success) {
+  #       $h->log->error("bad response from $url : " . $response->status_line);
+  #       $h->show('enter.cml', { error => "problem with $server_name server", type => $type });
+  #       return;
+  #     }
+
+  #     my $result = eval { JSON::from_json($response->decoded_content) } or do {
+  #       $h->log->error("bad json from $url");
+  #       $h->show('enter.cml', { error => "problem with $server_name server", type => $type });
+  #       return;
+  #     };
+
+  #     unless($result->{success}) {
+  #       $h->show('enter.cml', { error => 'incorrect login or password', type => $type });
+  #       $h->log->info($h->connection->log_message . " " . $h->req->ver . " #authenticate unsuccessfull with " . lc($type) . " login " . String::Escape::printable($nick));
+  #     } else {
+  #       my $account_data = {
+  #         login => $nick,
+  #         id => $result->{id},
+  #         type => $type,
+  #       };
+  #       $account_data->{profile} = $result->{profile} if defined $result->{profile} && $result->{profile} =~ m{^https?://};
+  #       if($type eq 'LCN') {
+  #         my $url = URI->new("http://" . $h->server->config->{lcn_host} . "/lang_redir.php");
+  #         $url->query_param(path => 'player.php?plid=' . $account_data->{id});
+  #         $account_data->{profile} = "$url";
+  #       }
+  #       $h->connection->data->{account} = $account_data;
+  #       $nick =~ s/[^\[\]\w-]+//g;
+  #       $nick =~ s/^(?=\d)/_/;
+  #       $h->log->info(
+  #         $h->connection->log_message . " " . $h->req->ver . " #authenticate successfull with " . lc($type)
+  #         . " account " . String::Escape::printable("$account_data->{id} $account_data->{login}")
+  #       );
+  #       $self->_success_enter($h, $p, $nick);
+  #     }
+  #   }
+  # } 
+  elsif($type eq 'login_view' || $type eq 'register_view') {
     if(!defined($nick) || $nick eq '') {
-      $h->show('enter.cml', { error => 'enter nick', type => $type });
-    } elsif(!defined($nick) || $nick eq '') {
-      $h->show('enter.cml', { error => 'enter password', type => $type });
+      $h->show('error_enter.cml', { error_text => 'Enter nick' });
     } else {
-      my $url = "http://$host/api/server.php";
-      my $response = $ua->post($url, { 
-        action => 'logon',
-        key => $key,
-        login => $nick,
-        password => $password,
-      }, X_Client_IP => $h->connection->ip ); 
+      $nick = substr($nick, 0, 25) if length($nick) > 25;
+
+      my $password = $p->{PASSWORD};
+      my $email = $p->{EMAIL};
+      my $isLogin = $type eq 'login_view';
+      
+      my $account_data = $isLogin ? {
+        nickName => $nick,
+        email => '',
+        passwordHash => $password,
+      } : {
+        nickName => $nick,
+        email => $email,
+        passwordHash => $password,
+      };
+
+      my $url = $isLogin ? "http://localhost:8080/players/login" : "http://localhost:8080/players/register";
+
+      my $login_req = HTTP::Request->new($isLogin ? 'POST' : 'PUT', $url);
+      $login_req->header('Content-Type' => 'application/json');
+      $login_req->content(encode_json($account_data));
+
+      my $response = $ua->request($login_req);
 
       unless($response->is_success) {
-        $h->log->error("bad response from $url : " . $response->status_line);
-        $h->show('enter.cml', { error => "problem with $server_name server", type => $type });
+        $h->log->error("bad response from $url with body $account_data: " . $response->status_line);
+        $h->show('enter.cml', { error => "problem with server", type => $type });
         return;
       }
 
       my $result = eval { JSON::from_json($response->decoded_content) } or do {
         $h->log->error("bad json from $url");
-        $h->show('enter.cml', { error => "problem with $server_name server", type => $type });
+        $h->show('enter.cml', { error => "problem with server", type => $type });
         return;
       };
-
-      unless($result->{success}) {
-        $h->show('enter.cml', { error => 'incorrect login or password', type => $type });
+      unless($result->{loginStatus} eq 'SUCCESS') {
+        $h->show('enter.cml', { error => $result->{message}, type => $type });
         $h->log->info($h->connection->log_message . " " . $h->req->ver . " #authenticate unsuccessfull with " . lc($type) . " login " . String::Escape::printable($nick));
       } else {
-        my $account_data = {
-          login => $nick,
-          id => $result->{id},
-          type => $type,
-        };
-        $account_data->{profile} = $result->{profile} if defined $result->{profile} && $result->{profile} =~ m{^https?://};
-        if($type eq 'LCN') {
-          my $url = URI->new("http://" . $h->server->config->{lcn_host} . "/lang_redir.php");
-          $url->query_param(path => 'player.php?plid=' . $account_data->{id});
-          $account_data->{profile} = "$url";
-        }
-        $h->connection->data->{account} = $account_data;
-        $nick =~ s/[^\[\]\w-]+//g;
-        $nick =~ s/^(?=\d)/_/;
-        $h->log->info(
-          $h->connection->log_message . " " . $h->req->ver . " #authenticate successfull with " . lc($type)
-          . " account " . String::Escape::printable("$account_data->{id} $account_data->{login}")
-        );
         $self->_success_enter($h, $p, $nick);
       }
     }
-  } else {
+  }
+  else {
     if(!defined($nick) || $nick eq '') {
       $h->show('error_enter.cml', { error_text => 'Enter nick' });
     } elsif($nick !~ /^[\[\]_\w-]+$/) {
@@ -126,7 +177,11 @@ sub try_enter {
       $h->show('error_enter.cml', { error_text => "Bad character in nick. Nick can't start with " . ($1 eq '-' ? '-' : 'numerical digit') });
     } else {
       $nick = substr($nick, 0, 25) if length($nick) > 25;
-      $self->_success_enter($h, $p, $nick);
+      if ($nick eq 'dev-ac-md') {
+        $h->show('enter.cml', { error => 'username reserved for authentication, please log in with password or chose another one', type => $type });
+      } else {
+        $self->_success_enter($h, $p, $nick);
+      }
     }
   }
 }
@@ -219,7 +274,8 @@ sub reg_new_room {
     my $title = $p->{VE_TITLE};
     $title = substr($title, 0, 60) if length($title) > 60;
     s/^\s+//, s/\s+$// for $title;
-    my $row = [ $room_id, (length $p->{VE_PASSWD} ? '#' : ''), $title, $h->connection->data->{nick}, ($h->is_american_conquest ? $p->{VE_TYPE} : ()), $level, "1/".($p->{VE_MAX_PL}+2), $h->req->ver, $h->connection->int_ip, sprintf("0%X", 0xFFFFFFFF - $room_id) ];
+    my $maxPlayers = ($p->{VE_TYPE} == 1 ? 2 : $p->{VE_MAX_PL}+2);
+    my $row = [ $room_id, (length $p->{VE_PASSWD} ? '#' : ''), $title, $h->connection->data->{nick}, $p->{VE_TYPE}, "1/".($maxPlayers), $h->req->ver, $h->connection->int_ip, sprintf("0%X", 0xFFFFFFFF - $room_id) ];
     my $ctlsum = $h->server->_room_control_sum($row);
     my $room = {
       row            => $row,
@@ -232,7 +288,7 @@ sub reg_new_room {
       players_count  => 1,
       players        => { $player_id => { %{$h->server->data->{players}->{$player_id}} } },
       players_time   => { $player_id => time },
-      max_players    => $p->{VE_MAX_PL} + 2,
+      max_players    => $maxPlayers,
       ver            => $h->req->ver,
       level          => int($p->{VE_LEVEL}),
       ctime          => time,
@@ -314,8 +370,7 @@ sub discord_dlg {
 
 sub register {
   my($self, $h, $p) = @_;
-  
-  $h->show('register.cml', {});
+  $h->show('register.cml', { type => 'register_view' });
 }
 
 sub _time_interval {

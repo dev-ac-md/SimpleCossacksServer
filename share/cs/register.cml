@@ -27,10 +27,10 @@
 #pan[%P_NICK](%BOX[x:100,x1:100%-10,y:140,h:24],4)
 #edit(%BOX[x:100,x1:100%-10,y:138,h:24],{%GV_EMAIL})
 
-#txt(%BOX[x:10,y:100%-30,w:100%,h:24],{},"Note: doesn't work yet, only anonymus login possible")
+#txt(%BOX[x:10,y:100%-50,w:100%,h:24],{},"Note: please use your own email to register. For password recovery write to dev.94.md@gmail.com from your registration email!")
 
 #font(YF,WF,RF)
 
 #exec(LW_gvar&%HEIGHT&Internet/Cash/height.dat)
-#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{},"Enter")
+#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{GW|go&try_enter&NICK=<%GV_NICKNAME>&TYPE=<? type ?>&PASSWORD=<%GV_PASSWORD>&EMAIL=<%GV_EMAIL>&LOGGED_IN=<? logged_in ?>&HEIGHT:=&<@%HEIGHT>|LW_lockall},"Enter")
 #sbtn[%B_RGST](%BOX[x:185,y:100%+8,w:160,h:24],{LW_key&#CANCEL|LW_lockall},"Cancel")
