@@ -5,6 +5,7 @@ use LWP;
 use JSON;
 use AnyEvent::IO;
 use String::Escape();
+use Digest::MD5 qw(md5);
 use URI();
 use URI::QueryParam();
 use feature 'state';
@@ -13,7 +14,7 @@ my @PUBLIC = qw[
   enter try_enter startup resize games rooms_table_dgl new_room_dgl reg_new_room
   join_game join_pl_cmd user_details users_list direct direct_ping 
   direct_join room_info_dgl discord_dlg register started_room_message
-  tournaments lcn_registration_dgl gg_cup_thanks_dgl
+  tournaments lcn_registration_dgl gg_cup_thanks_dgl get_players_list
 ];
 
 
@@ -176,12 +177,9 @@ sub try_enter {
     } elsif($nick =~ /^([0-9-])/) {
       $h->show('error_enter.cml', { error_text => "Bad character in nick. Nick can't start with " . ($1 eq '-' ? '-' : 'numerical digit') });
     } else {
-      $nick = substr($nick, 0, 25) if length($nick) > 25;
-      if ($nick eq 'dev-ac-md') {
-        $h->show('enter.cml', { error => 'username reserved for authentication, please log in with password or chose another one', type => $type });
-      } else {
-        $self->_success_enter($h, $p, $nick);
-      }
+      $nick = substr($nick, 0, 19) if length($nick) > 25;
+      $nick = $nick . '_annon';
+      $self->_success_enter($h, $p, $nick);
     }
   }
 }
@@ -511,9 +509,65 @@ sub gg_cup_thanks_dgl {
   $h->show('gg_cup_thanks_dgl.cml', { supporters => $gg_cup->{supporters} });
 }
 
+sub get_players_list {
+    my ($self, $h) = @_;
+
+    state $last_fetch_time = 0;
+    state $cached_players_list = [];
+    my $now = time();
+    # Cache for 60 seconds to avoid hammering the endpoint from GETTBL polls.
+    if ($now - $last_fetch_time < 60 && @$cached_players_list) {
+        return $cached_players_list;
+    }
+
+    my $url = "http://localhost:8080/players/player-details";
+    my $req_body = { "includes" => ["nickName"] };
+
+    my $req = HTTP::Request->new('GET', $url);
+    $req->header('Content-Type' => 'application/json');
+    $req->content(encode_json($req_body));
+
+    my $response = $ua->request($req);
+
+    unless($response->is_success) {
+      $h->log->error("bad response from $url: " . $response->status_line);
+      # Don't show error to user, just return cached or empty list
+      return $cached_players_list || [];
+    }
+
+    my $result = eval { JSON::from_json($response->decoded_content) };
+    unless($result) {
+      $h->log->error("bad json from $url");
+      return $cached_players_list || [];
+    }
+
+    my $players_list = [];
+    my %seen_nicks;
+    if (ref $result eq 'HASH' && $result->{playerDetails} && ref $result->{playerDetails} eq 'ARRAY') {
+        my @sorted_players = sort { lc($a->{nickName}) cmp lc($b->{nickName}) } @{$result->{playerDetails}};
+        my $row_num = 1;
+        for my $player (@sorted_players) {
+            if (ref $player eq 'HASH' && exists $player->{nickName}) {
+                my $nick = $player->{nickName};
+                next if $seen_nicks{$nick};
+                $seen_nicks{$nick} = 1;
+                my $id = unpack('L', md5($nick));
+                push @$players_list, [$row_num, $id, $nick];
+                $row_num++;
+            }
+        }
+    }
+    
+    $last_fetch_time = $now;
+    $cached_players_list = $players_list;
+    return $players_list;
+}
+
 sub users_list {
   my($self, $h, $p) = @_;
-  $self->_error($h, "Not imlemented");
+  my $players_list = $self->get_players_list($h);
+  $h->server->data->{dbtbl}{players_list} = $players_list;
+  $h->show('users_list.cml');
 }
 
 sub _default {

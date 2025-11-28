@@ -86,19 +86,49 @@ sub echo : Command {
 sub GETTBL : Command {
   my($self, $h, $name, $num, $rows_pack) = @_;
   s/\0$// for $name, $num;
+
+  if ($name eq 'players_list') {
+    my $players_on_server = SimpleCossacksServer::CommandController::Open->get_players_list($h) || [];
+    my %server_rows_by_id;
+    for my $row (@$players_on_server) {
+        $server_rows_by_id{$row->[1]} = $row;
+    }
+
+    my @client_ids = unpack 'L*', $rows_pack;
+    my %client_ids = map { $_ => 1 } @client_ids;
+
+    my @deleted_ids;
+    for my $id (@client_ids) {
+        push @deleted_ids, $id unless $server_rows_by_id{$id};
+    }
+
+    my @new_rows;
+    for my $id (keys %server_rows_by_id) {
+        push @new_rows, $server_rows_by_id{$id} unless $client_ids{$id};
+    }
+    
+    @new_rows = sort { $a->[0] <=> $b->[0] } @new_rows;
+
+    $h->push_command( LW_dtbl => map{"$_\0"} $name, pack 'L*', @deleted_ids);
+    $h->push_command( LW_tbl => map{"$_\0"} $name, scalar(@new_rows), map {@$_} @new_rows );
+    return;
+  }
+
   my @rows_ctl_sum = unpack 'L*', $rows_pack;
   my %rows_ctl_sum = map { $_ => 1 } @rows_ctl_sum;
   my(@dtbl, @tbl);
   my $rooms = $h->server->data->{dbtbl}{$name};
-  my $rooms_by_ctlsum = $h->server->data->{rooms_by_ctlsum};
+  my $rooms_by_ctlsum = $h->server->data->{rooms_by_ctlsum} || {};
   my $hide_started = !$h->connection->data->{dev} && !$h->server->config->{show_started_rooms};
   for my $sum (@rows_ctl_sum) {
     push @dtbl, $sum if !$rooms_by_ctlsum->{$sum} || $hide_started && $rooms_by_ctlsum->{$sum}->{started};
   }
-  $rooms = [grep {!$_->{started}} @$rooms] if $hide_started;
-  for my $room (@$rooms) {
-    unless($rows_ctl_sum{ $room->{ctlsum} }) {
-      push @tbl, $room->{row};
+  if (ref $rooms eq 'ARRAY') {
+    $rooms = [grep {!$_->{started}} @$rooms] if $hide_started;
+    for my $room (@$rooms) {
+      unless($rows_ctl_sum{ $room->{ctlsum} }) {
+        push @tbl, $room->{row};
+      }
     }
   }
   $h->push_command( LW_dtbl => map{"$_\0"} $name, pack 'L*', @dtbl);

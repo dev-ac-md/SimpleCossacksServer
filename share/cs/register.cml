@@ -2,7 +2,7 @@
 #pan[%MPN](%BOX[x:0,y:0,w:100%,h:100%],8)
 
 #font(WF,WF,WF)
-#ctxt[%TIT](%BOX[x:0,y:0,w:100%,h:30],{},"American Conquest Server")
+#ctxt[%TIT](%BOX[x:0,y:0,w:100%,h:30],{},"American Conquest Server - Registration")
 
 #def_panel(15,Internet/pix/i_bor%d,48,49,50,51,52,53,55,54,67,45)
 #font(YF,WF,WF)
@@ -15,12 +15,12 @@
 #txt(%BOX[x:10,y:82,w:100%,h:24],{},"Nickname:")
 #font(YF,YF,WF)
 #pan[%P_NICK](%BOX[x:100,x1:100%-10,y:80,h:24],4)
-#edit(%BOX[x:100,x1:100%-10,y:78,h:24],{%GV_NICKNAME})
+#edit(%BOX[x:100,x1:100%-10,y:78,h:24],{%GV_NICKNAME_REG})
 
 #txt(%BOX[x:10,y:112,w:100%,h:24],{},"Password:")
 #font(YF,YF,WF)
 #pan[%P_NICK](%BOX[x:100,x1:100%-10,y:110,h:24],4)
-#edit(%BOX[x:100,x1:100%-10,y:108,h:24],{%GV_PASSWORD})
+#edit(%BOX[x:100,x1:100%-10,y:108,h:24],{%GV_PASSWORD_REG})
 
 #txt(%BOX[x:10,y:142,w:100%,h:24],{},"Email:")
 #font(YF,YF,WF)
@@ -32,5 +32,5 @@
 #font(YF,WF,RF)
 
 #exec(LW_gvar&%HEIGHT&Internet/Cash/height.dat)
-#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{GW|go&try_enter&NICK=<%GV_NICKNAME>&TYPE=<? type ?>&PASSWORD=<%GV_PASSWORD>&EMAIL=<%GV_EMAIL>&LOGGED_IN=<? logged_in ?>&HEIGHT:=&<@%HEIGHT>|LW_lockall},"Enter")
+#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{GW|go&try_enter&NICK=<%GV_NICKNAME_REG>&TYPE=<? type ?>&PASSWORD=<%GV_PASSWORD_REG>&EMAIL=<%GV_EMAIL>&LOGGED_IN=<? logged_in ?>&HEIGHT:=&<@%HEIGHT>|LW_lockall},"Enter")
 #sbtn[%B_RGST](%BOX[x:185,y:100%+8,w:160,h:24],{LW_key&#CANCEL|LW_lockall},"Cancel")
