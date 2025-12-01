@@ -13,8 +13,8 @@ use feature 'state';
 my @PUBLIC = qw[
   enter try_enter startup resize games rooms_table_dgl new_room_dgl reg_new_room
   join_game join_pl_cmd user_details users_list direct direct_ping 
-  direct_join room_info_dgl discord_dlg register started_room_message
-  tournaments lcn_registration_dgl gg_cup_thanks_dgl get_players_list
+  direct_join room_info_dgl discord_dlg register started_room_message logout_player
+  get_players_list
 ];
 
 
@@ -27,33 +27,23 @@ sub public {
 sub enter {
   my($self, $h, $p) = @_;
   if($h->connection->data->{account}) {
-    my $type = $h->connection->data->{account}{type}; 
-    my $nick = $h->connection->data->{account}{login};
-    my $id = $h->connection->data->{account}{id};
-    $h->show('enter.cml', { type => $type, nick => $nick, id => $id, logged_in => 1 });
-  } else {
-    my $type = $p->{TYPE} if $p->{TYPE} && ($p->{TYPE} eq 'anonymous_view' || $p->{TYPE} eq 'login_view');
-    if (!$type) {
-      $type = 'anonymous_view';
-    }
-    $h->show('enter.cml', { type => $type });
+    $self->logout_player($h);
   }
+  my $type = $p->{TYPE} if $p->{TYPE} && ($p->{TYPE} eq 'anonymous_view' || $p->{TYPE} eq 'login_view');
+  if (!$type) {
+    $type = 'anonymous_view';
+  }
+  $h->show('enter.cml', { type => $type });
 }
-
-my $users = [{login => 'ac-dev-md'}];
 
 my $ua = LWP::UserAgent->new();
 sub try_enter {
   my($self, $h, $p) = @_;
   my $nick = $p->{NICK};
   my $type = $p->{TYPE} // '';
-  $h->connection->data->{dev} = ($nick =~ s/#dev4231$//);
+  # $h->connection->data->{dev} = ($nick =~ s/#dev4231$//);
   if($p->{RESET}) {
-    my $account_data = $h->connection->data->{account};
-    $h->log->info(
-      $h->connection->log_message . " " . $h->req->ver . " #logout from " . lc($account_data->{type}) . " account "
-      . String::Escape::printable("$account_data->{id} $account_data->{login}")
-    );
+    $self->logout_player($h);
     $h->connection->data->{account} = undef;
     $h->show('enter.cml');
   } elsif($p->{LOGGED_IN}) {
@@ -65,64 +55,7 @@ sub try_enter {
     } else {
       $h->show('enter.cml');  
     }
-  } 
-  # elsif($type eq 'LCN' || $type eq 'WCL') {
-  #   my $host = $h->server->config->{lc($type) . "_host"};
-  #   my $server_name = $h->server->config->{lc($type) . "_server_name"} // $host;
-  #   my $key = $type eq 'LCN' ? $h->server->config->{lcn_key} : $h->server->config->{wcl_key};
-  #   my $password = $p->{PASSWORD};
-  #   if(!defined($nick) || $nick eq '') {
-  #     $h->show('enter.cml', { error => 'enter nick', type => $type });
-  #   } elsif(!defined($nick) || $nick eq '') {
-  #     $h->show('enter.cml', { error => 'enter password', type => $type });
-  #   } else {
-  #     my $url = "http://$host/api/server.php";
-  #     my $response = $ua->post($url, { 
-  #       action => 'logon',
-  #       key => $key,
-  #       login => $nick,
-  #       password => $password,
-  #     }, X_Client_IP => $h->connection->ip ); 
-
-  #     unless($response->is_success) {
-  #       $h->log->error("bad response from $url : " . $response->status_line);
-  #       $h->show('enter.cml', { error => "problem with $server_name server", type => $type });
-  #       return;
-  #     }
-
-  #     my $result = eval { JSON::from_json($response->decoded_content) } or do {
-  #       $h->log->error("bad json from $url");
-  #       $h->show('enter.cml', { error => "problem with $server_name server", type => $type });
-  #       return;
-  #     };
-
-  #     unless($result->{success}) {
-  #       $h->show('enter.cml', { error => 'incorrect login or password', type => $type });
-  #       $h->log->info($h->connection->log_message . " " . $h->req->ver . " #authenticate unsuccessfull with " . lc($type) . " login " . String::Escape::printable($nick));
-  #     } else {
-  #       my $account_data = {
-  #         login => $nick,
-  #         id => $result->{id},
-  #         type => $type,
-  #       };
-  #       $account_data->{profile} = $result->{profile} if defined $result->{profile} && $result->{profile} =~ m{^https?://};
-  #       if($type eq 'LCN') {
-  #         my $url = URI->new("http://" . $h->server->config->{lcn_host} . "/lang_redir.php");
-  #         $url->query_param(path => 'player.php?plid=' . $account_data->{id});
-  #         $account_data->{profile} = "$url";
-  #       }
-  #       $h->connection->data->{account} = $account_data;
-  #       $nick =~ s/[^\[\]\w-]+//g;
-  #       $nick =~ s/^(?=\d)/_/;
-  #       $h->log->info(
-  #         $h->connection->log_message . " " . $h->req->ver . " #authenticate successfull with " . lc($type)
-  #         . " account " . String::Escape::printable("$account_data->{id} $account_data->{login}")
-  #       );
-  #       $self->_success_enter($h, $p, $nick);
-  #     }
-  #   }
-  # } 
-  elsif($type eq 'login_view' || $type eq 'register_view') {
+  } elsif($type eq 'login_view' || $type eq 'register_view') {
     if(!defined($nick) || $nick eq '') {
       $h->show('error_enter.cml', { error_text => 'Enter nick' });
     } else {
@@ -165,6 +98,13 @@ sub try_enter {
         $h->show('enter.cml', { error => $result->{message}, type => $type });
         $h->log->info($h->connection->log_message . " " . $h->req->ver . " #authenticate unsuccessfull with " . lc($type) . " login " . String::Escape::printable($nick));
       } else {
+        my $account_data_saved = {
+          nickName => $nick,
+          login => $nick,
+          token => $result->{token},
+          id => 1,
+        };
+        $h->connection->data->{account} = $account_data_saved;
         $self->_success_enter($h, $p, $nick);
       }
     }
@@ -184,14 +124,60 @@ sub try_enter {
   }
 }
 
+sub send_json_request {
+  my($self, $h, $url, $method, $data) = @_;
+
+  my $request = HTTP::Request->new($method, $url);
+  $request->header('Content-Type' => 'application/json');
+  $request->content(encode_json($data));
+
+  my $response = $ua->request($request);
+
+  unless($response->is_success) {
+    $h->log->error("bad response from $url with body $data: " . $response->status_line);
+    return undef;
+  }
+
+  my $result = eval { JSON::from_json($response->decoded_content) } or do {
+    $h->log->error("bad json from $url");
+    return undef;
+  };
+  return $result;
+}
+
+sub logout_player {
+    my ($self, $h) = @_;
+    if (my $account = $h->connection->data->{account}) {
+      my $server = $h->server;
+      return unless $account && $account->{token};
+
+      my $token = $account->{token};
+      my $nick = $account->{nickName};
+
+      $server->log->info(" #logout from account " . String::Escape::printable($nick) . " with token " . $token);
+
+      my $url = "http://localhost:8080/players/logout";
+      my $request = HTTP::Request->new('POST', $url);
+      $request->header('Content-Type' => 'application/json');
+      $request->content($token);
+      $ua->request($request);
+  }
+  $h->connection->data->{account} = undef;
+  if(my $id = $h->connection->data->{id}) {
+    $h->server->leave_room($id);
+    delete $h->server->data->{players}{$id};
+  } 
+}
+
 sub _success_enter {
   my($self, $h, $p, $nick) = @_;
-  my $g = $h->server->data;
+  my $serverData = $h->server->data;
   my $id;
   unless($h->connection->data->{id}) {
-    $id = ++$g->{last_player_id};
+    $id = ++$serverData->{last_player_id};
     $h->connection->data->{id} = $id;
     $h->connection->connection_by_pid($id => $h->connection);
+    # $h->log->warn("#success_enter connectionDataId: " . $h->connection->data->{id});
   } else {
     $id = $h->connection->data->{id};
     $h->server->leave_room( $id );
@@ -201,15 +187,15 @@ sub _success_enter {
   $h->log->info(
     $h->connection->log_message . " " . $h->req->ver . " #enter" 
     . ( $account_data ?
-      " with " . lc($account_data->{type}) . " account " . String::Escape::printable("$account_data->{id} $account_data->{login}")
+      " with account " . String::Escape::printable("$account_data->{token} $account_data->{nickName}")
       : ""
-    )
+    ) . " nick: " . String::Escape::printable($nick) . " id: " . $id
   );
-  $g->{players}{$id}{nick} = $nick;
-  $g->{players}{$id}{account} = $account_data;
-  $g->{players}{$id}{connected_at} = $h->connection->ctime;
-  $g->{players}{$id}{id} = $id;
-  $g->{players}{$id}{account} = $h->connection->data->{account};
+  $serverData->{players}{$id}{nick} = $nick;
+  $serverData->{players}{$id}{account} = $account_data;
+  $serverData->{players}{$id}{connected_at} = $h->connection->ctime;
+  $serverData->{players}{$id}{id} = $id;
+  $serverData->{players}{$id}{account} = $h->connection->data->{account};
   my $height = $p->{HEIGHT} =~ /^\d+$/ ? $p->{HEIGHT} : $h->connection->data->{height};
   $h->connection->data->{height} = $height;
   my $size = $height && $height > int(314 + (419 - 314)/2) ? 'large' : 'small';
@@ -317,7 +303,8 @@ sub room_info_dgl {
   }
   my $backto;
   if($p->{BACKTO} && $p->{BACKTO} eq 'user_details') {
-    $backto = 'open&user_details.dcml&ID=' . $h->connection->data->{id}; 
+    # $backto = 'open&user_details.dcml&ID=' . $h->connection->data->{id}; 
+    # $h->log->warn("room_info_dgl: Set backto ID=" . $h->connection->data->{id});
   }
   if($room->{started} && ($h->connection->data->{dev} || $h->server->config->{show_started_room_info})) {
     state $nations = [qw<
@@ -359,11 +346,7 @@ sub room_info_dgl {
 
 sub discord_dlg {
   my($self, $h, $p) = @_;
-  my $backto;
-  if($p->{BACKTO} && $p->{BACKTO} eq 'user_details') {
-    $backto = 'open&user_details.dcml&ID=' . $h->connection->data->{id}; 
-  }
-  $h->show('discord_dlg.cml', { backto => $backto });
+  $h->show('discord_dlg.cml', {});
 }
 
 sub register {
@@ -449,15 +432,46 @@ sub _join_to_room {
 sub user_details {
   my($self, $h, $p) = @_;
   my($id) = ($p->{ID} =~ /(\d+)/);
-  if(my $player = $h->server->data->{players}{$id}) {
+  my ($paramNick) = ($p->{VE_NICKNAME});
+  $h->log->warn("paramNick: " . encode_json($p));
+  my $nick = ($paramNick) ? $paramNick : $h->server->data->{players}{$id}{nick};
+
+  if (!$nick) {
+    $h->log->warn("There is no info about player $id");
     $h->show('user_details.cml', {
-      player => $player,
-      connection_time => $self->_time_interval($player->{connected_at}),
-      room => $h->server->data->{rooms_by_player}{ $id },
+        error => 'Data could not be retrieved',
+    }); 
+    return;
+  }
+
+  my $req_body = { 
+    includes => ["nickName","totalPlayTime"], 
+    playerToken => $h->connection->data->{account}{token}, 
+    filter => {
+      nickNames=> [$nick]
+      }
+    };
+  my $response = $self->send_json_request($h, "http://localhost:8080/players/player-details", "GET", $req_body);
+  $h->log->warn("User nickName sent $nick");
+  # $h->log->warn("User nickName for received player " . $response->{playerDetails}[0]->{nickName});
+
+  if ($response && $response->{playerDetails} && $response->{playerDetails}[0]) {
+    my $player = $response->{playerDetails}[0];
+
+    $h->show('user_details.cml', {
+        player => {
+          nickName => $player->{nickName},
+          totalPlayTime => $self->_convertSecondsToTimeString($player->{totalPlayTime}),
+        }
     }); 
   } else {
     $h->log->warn("There is no info about player $id");
+    $h->show('user_details.cml', {
+        error => 'Data could not be retrieved',
+    }); 
   }
+  
+  $h->log->warn("User details page for player $id");
 }
 
 sub join_pl_cmd {
@@ -475,40 +489,6 @@ sub join_pl_cmd {
   }
 }
 
-sub tournaments {
-  my($self, $h, $p) = @_;
-  my $option = $p->{option} // 'total';
-  my $rating = $h->server->load_lcn_ranking();
-  if(!$rating) {
-    $self->_error($h, 'Internal server error');
-    return;
-  } else {
-    $h->show('lcn_rating.cml', {
-      options => $rating->{options},
-      options_labels => $rating->{labels},
-      current_option => $option,
-      rating => $rating->{ranking}{$option},
-    });
-  }
-}
-
-sub lcn_registration_dgl {
-  my($self, $h, $p) = @_;
-  $h->show('confirm_dgl.cml', {
-    header  => "LCN Registration",
-    text    => "Open www.newlcn.com?",
-    ok_text => "Ok",
-    command => "GW|url&http://" . $h->server->config->{lcn_host} . "/lang_redir.php&from=tournaments",
-    height  => 100,
-  });
-}
-
-sub gg_cup_thanks_dgl {
-  my($self, $h, $p) = @_;
-  my $gg_cup = $h->server->load_gg_cup();
-  $h->show('gg_cup_thanks_dgl.cml', { supporters => $gg_cup->{supporters} });
-}
-
 sub get_players_list {
     my ($self, $h) = @_;
 
@@ -521,7 +501,7 @@ sub get_players_list {
     }
 
     my $url = "http://localhost:8080/players/player-details";
-    my $req_body = { "includes" => ["nickName"] };
+    my $req_body = { "includes" => ["nickName","totalPlayTime"], "playerToken" => $h->connection->data->{account}{token}};
 
     my $req = HTTP::Request->new('GET', $url);
     $req->header('Content-Type' => 'application/json');
@@ -549,10 +529,12 @@ sub get_players_list {
         for my $player (@sorted_players) {
             if (ref $player eq 'HASH' && exists $player->{nickName}) {
                 my $nick = $player->{nickName};
+                my $playTimeSeconds = $player->{totalPlayTime};
+                my $playTimeStr = $self->_convertSecondsToTimeString($playTimeSeconds);
                 next if $seen_nicks{$nick};
                 $seen_nicks{$nick} = 1;
                 my $id = unpack('L', md5($nick));
-                push @$players_list, [$row_num, $id, $nick];
+                push @$players_list, [$row_num, $id, $nick, $playTimeStr];
                 $row_num++;
             }
         }
@@ -561,6 +543,11 @@ sub get_players_list {
     $last_fetch_time = $now;
     $cached_players_list = $players_list;
     return $players_list;
+}
+
+sub _convertSecondsToTimeString {
+  my($self, $seconds) = @_;
+  return $seconds < 3600 ? int($seconds / 60) . 'm' : int($seconds / 3600) . 'h';
 }
 
 sub users_list {

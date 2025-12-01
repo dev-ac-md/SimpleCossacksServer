@@ -9,10 +9,7 @@ sub _connect {
 
 sub _close {
   my($self, $h) = @_;
-  if(my $id = $h->connection->data->{id}) {
-    $h->server->leave_room($id);
-    delete $h->server->data->{players}{$id};
-  }
+  SimpleCossacksServer::CommandController::Open->logout_player($h);
   $h->log->info($h->connection->log_message . ' #disconnect');
 }
   

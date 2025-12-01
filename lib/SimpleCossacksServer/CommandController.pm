@@ -110,7 +110,7 @@ sub GETTBL : Command {
     @new_rows = sort { $a->[0] <=> $b->[0] } @new_rows;
 
     $h->push_command( LW_dtbl => map{"$_\0"} $name, pack 'L*', @deleted_ids);
-    $h->push_command( LW_tbl => map{"$_\0"} $name, scalar(@new_rows), map {@$_} @new_rows );
+    $h->push_command( LW_tbl => map{"$_\0"} $name, scalar(@new_rows), map { @$_ } @new_rows );
     return;
   }
 
