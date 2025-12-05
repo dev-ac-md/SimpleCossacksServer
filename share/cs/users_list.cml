@@ -11,7 +11,7 @@
 #box[%BOTTOM](x:0,w:100%,y:100%-<? bottom_height ?>,h:<? bottom_height ?>)
 #pan(%BOTTOM[x:0-1,w:100%+2,y:0-1,h:100%+2],1)
 #btn(%BOTTOM[x:5,y:4,w:80,h:28],{GW|open&startup},"Back")
-#btn(%BOTTOM[x:95,y:4,w:80,h:28],{GW|open&user_details&ID=<%PL_ID>&VE_NICKNAME=<%PL_NAME>},"Details")
+#btn(%BOTTOM[x:95,y:4,w:80,h:28],{GW|open&user_details&ID=<%PL_ID>^VE_NICKNAME=<%PL_NAME>^BACKTO=users_list},"Details")
 
 #font(YF,YF,YF)
 #rtxt(%BOTTOM[x1:100%-14,x:300,y:7,h:24],{},"All Player List")
@@ -22,7 +22,7 @@
 
 #apan(%LBX[x:1,y:1,w:23,h:24],{LW_file&Internet/Cash/users_table_dgl.dcml},"0")
 <PLAYERS>
-#DBTBL[%PLST](%LBX[x:1,y:1,w:100%,h:100%],{players_list}{%PL_C},"<? server.config.table_timeout ?>",TBL_SF,4,4,
+#DBTBL[%PLST](%LBX[x:1,y:1,w:100%,h:100%],{players_list}{%PL_C},"<? server.config.table_timeout ?>",TBL_S,4,1,
 4,"#",INT,INT,NON,%PL_NUM,
 0,"ID",NON,NON,NON,%PL_ID,
 15,"Name",STR,STR,STR,%PL_NAME,

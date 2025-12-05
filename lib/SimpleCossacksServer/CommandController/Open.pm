@@ -29,11 +29,7 @@ sub enter {
   if($h->connection->data->{account}) {
     $self->logout_player($h);
   }
-  my $type = $p->{TYPE} if $p->{TYPE} && ($p->{TYPE} eq 'anonymous_view' || $p->{TYPE} eq 'login_view');
-  if (!$type) {
-    $type = 'anonymous_view';
-  }
-  $h->show('enter.cml', { type => $type });
+  $h->show('enter.cml', {type => 'login_view'});
 }
 
 my $ua = LWP::UserAgent->new();
@@ -55,7 +51,7 @@ sub try_enter {
     } else {
       $h->show('enter.cml');  
     }
-  } elsif($type eq 'login_view' || $type eq 'register_view') {
+  } {
     if(!defined($nick) || $nick eq '') {
       $h->show('error_enter.cml', { error_text => 'Enter nick' });
     } else {
@@ -75,56 +71,44 @@ sub try_enter {
         passwordHash => $password,
       };
 
-      my $url = $isLogin ? "http://localhost:8080/players/login" : "http://localhost:8080/players/register";
-
-      my $login_req = HTTP::Request->new($isLogin ? 'POST' : 'PUT', $url);
-      $login_req->header('Content-Type' => 'application/json');
-      $login_req->content(encode_json($account_data));
-
-      my $response = $ua->request($login_req);
-
-      unless($response->is_success) {
-        $h->log->error("bad response from $url with body $account_data: " . $response->status_line);
-        $h->show('enter.cml', { error => "problem with server", type => $type });
+      my $targetPage = $isLogin ? 'enter.cml' : 'register.cml';
+      
+      my $result = $isLogin ? $self->_send_json_request($h, "http://localhost:8080/players/login", "POST", $account_data) :
+        $self->_send_json_request($h, "http://localhost:8080/players/register", "PUT", $account_data);
+      unless ($result) {
+        $h->show($targetPage, { error => "problem with server", type => $type });
         return;
       }
+      unless ($isLogin) {
+        unless($result->{loginStatus} eq 'SUCCESS') {
+          $h->show($targetPage, { error => $result->{message}, type => $type });
+          return;
+        }
 
-      my $result = eval { JSON::from_json($response->decoded_content) } or do {
-        $h->log->error("bad json from $url");
-        $h->show('enter.cml', { error => "problem with server", type => $type });
-        return;
-      };
+        $result = $self->_send_json_request($h, "http://localhost:8080/players/login", "POST", $account_data);
+        unless ($result) {
+          $h->show($targetPage, { error => "problem with server", type => $type });
+          return;
+        }
+      }
+
       unless($result->{loginStatus} eq 'SUCCESS') {
-        $h->show('enter.cml', { error => $result->{message}, type => $type });
+        $h->show($targetPage, { error => $result->{message}, type => $type });
         $h->log->info($h->connection->log_message . " " . $h->req->ver . " #authenticate unsuccessfull with " . lc($type) . " login " . String::Escape::printable($nick));
       } else {
         my $account_data_saved = {
           nickName => $nick,
           login => $nick,
           token => $result->{token},
-          id => 1,
         };
         $h->connection->data->{account} = $account_data_saved;
         $self->_success_enter($h, $p, $nick);
       }
     }
   }
-  else {
-    if(!defined($nick) || $nick eq '') {
-      $h->show('error_enter.cml', { error_text => 'Enter nick' });
-    } elsif($nick !~ /^[\[\]_\w-]+$/) {
-      $h->show('error_enter.cml', { error_text => 'Bad character in nick. Nick can contain only a-z,A-Z,0-9,[]_-' });
-    } elsif($nick =~ /^([0-9-])/) {
-      $h->show('error_enter.cml', { error_text => "Bad character in nick. Nick can't start with " . ($1 eq '-' ? '-' : 'numerical digit') });
-    } else {
-      $nick = substr($nick, 0, 19) if length($nick) > 25;
-      $nick = $nick . '_annon';
-      $self->_success_enter($h, $p, $nick);
-    }
-  }
 }
 
-sub send_json_request {
+sub _send_json_request {
   my($self, $h, $url, $method, $data) = @_;
 
   my $request = HTTP::Request->new($method, $url);
@@ -435,6 +419,10 @@ sub user_details {
   my ($paramNick) = ($p->{VE_NICKNAME});
   $h->log->warn("paramNick: " . encode_json($p));
   my $nick = ($paramNick) ? $paramNick : $h->server->data->{players}{$id}{nick};
+  my $backto = 'open&startup';
+  if ($p->{BACKTO} && $p->{BACKTO} eq 'users_list') {
+    $backto = 'open&users_list.dcml';
+  }
 
   if (!$nick) {
     $h->log->warn("There is no info about player $id");
@@ -451,7 +439,7 @@ sub user_details {
       nickNames=> [$nick]
       }
     };
-  my $response = $self->send_json_request($h, "http://localhost:8080/players/player-details", "GET", $req_body);
+  my $response = $self->_send_json_request($h, "http://localhost:8080/players/player-details", "GET", $req_body);
   $h->log->warn("User nickName sent $nick");
   # $h->log->warn("User nickName for received player " . $response->{playerDetails}[0]->{nickName});
 
@@ -462,7 +450,8 @@ sub user_details {
         player => {
           nickName => $player->{nickName},
           totalPlayTime => $self->_convertSecondsToTimeString($player->{totalPlayTime}),
-        }
+        },
+        backto => $backto,
     }); 
   } else {
     $h->log->warn("There is no info about player $id");
@@ -524,16 +513,15 @@ sub get_players_list {
     my $players_list = [];
     my %seen_nicks;
     if (ref $result eq 'HASH' && $result->{playerDetails} && ref $result->{playerDetails} eq 'ARRAY') {
-        my @sorted_players = sort { lc($a->{nickName}) cmp lc($b->{nickName}) } @{$result->{playerDetails}};
         my $row_num = 1;
-        for my $player (@sorted_players) {
+        for my $player (@{$result->{playerDetails}}) {
             if (ref $player eq 'HASH' && exists $player->{nickName}) {
                 my $nick = $player->{nickName};
                 my $playTimeSeconds = $player->{totalPlayTime};
                 my $playTimeStr = $self->_convertSecondsToTimeString($playTimeSeconds);
                 next if $seen_nicks{$nick};
                 $seen_nicks{$nick} = 1;
-                my $id = unpack('L', md5($nick));
+                my $id = unpack('L', md5($nick, $playTimeStr));
                 push @$players_list, [$row_num, $id, $nick, $playTimeStr];
                 $row_num++;
             }

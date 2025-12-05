@@ -103,11 +103,10 @@ sub GETTBL : Command {
     }
 
     my @new_rows;
-    for my $id (keys %server_rows_by_id) {
-        push @new_rows, $server_rows_by_id{$id} unless $client_ids{$id};
+    for my $row (@$players_on_server) {
+        my $id = $row->[1];
+        push @new_rows, $row unless $client_ids{$id};
     }
-    
-    @new_rows = sort { $a->[0] <=> $b->[0] } @new_rows;
 
     $h->push_command( LW_dtbl => map{"$_\0"} $name, pack 'L*', @deleted_ids);
     $h->push_command( LW_tbl => map{"$_\0"} $name, scalar(@new_rows), map { @$_ } @new_rows );
