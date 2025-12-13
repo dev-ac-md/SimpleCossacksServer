@@ -1,0 +1,391 @@
+Manifying 1 pod document
+Manifying 1 pod document
+Appending installation info to /usr/lib64/perl5/perllocal.pod
+Manifying 1 pod document
+Manifying 1 pod document
+Appending installation info to /usr/lib64/perl5/perllocal.pod
+2025-12-08 20:47:09.000000 +0000 info  AnyEvent: Autoloaded model 'AnyEvent::Impl::Perl', using it.
+2025-12-08 20:47:09.832293 +0000 note  SimpleCossacksServer: Listen localhost:34002
+2025-12-08 20:47:23.214452 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . #connect
+2025-12-08 20:47:23.218333 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 1 "21" "" -login "\r\n"
+2025-12-08 20:47:23.299731 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-08 20:47:24.870369 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 3 "21" "" -go "try_enter" "NICK=tester123456" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-08 20:47:24.941123 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 #enter with account e8bcf161-1490-4942-91d5-4292c96f950f tester123456 nick: tester123456 id: 1
+2025-12-08 20:47:38.005531 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-08 20:47:38.146792 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:47:48.184650 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 7 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:47:58.207950 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 9 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:48:08.251569 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 11 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:48:18.277861 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 13 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:48:20.100131 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 14 "02" "key" -open "new_room_dgl.dcml" "ASTATE=1"
+2025-12-08 20:48:21.257035 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 16 "02" "key" -open "reg_new_room.dcml" "ASTATE=1^VE_TITLE=welcome^VE_MAX_PL=5^VE_PASSWD=^VE_TYPE=0^VE_LEVEL=<%GV_VE_LEVEL>"
+2025-12-08 20:48:21.257740 +0000 warn  SimpleCossacksServer: Argument "<%GV_VE_LEVEL>" isn't numeric in numeric eq (==) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 241.
+2025-12-08 20:48:21.258304 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 #create room 2 welcome
+2025-12-08 20:48:21.404071 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 17 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:48:57.452356 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 18 "02" "key" -leave 
+2025-12-08 20:48:57.454221 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 #leave his room 2 welcome
+2025-12-08 20:48:57.657303 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 20 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-08 20:48:57.891532 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 2 0 21 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:49:03.434997 +0000 info  SimpleCossacksServer:  #logout from account tester123456 with token e8bcf161-1490-4942-91d5-4292c96f950f
+2025-12-08 20:49:03.482274 +0000 info  SimpleCossacksServer: 1 188.27.154.67 tester123456:1 #disconnect
+2025-12-08 20:49:30.683310 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . #connect
+2025-12-08 20:49:30.689733 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . 2 0 1 "21" "" -login "\r\n"
+2025-12-08 20:49:30.783346 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-08 20:49:31.855017 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-08 20:49:31.897579 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 #enter with account 07adbc89-db4c-47c5-ad33-f4c9427bb245 sasuke_md nick: sasuke_md id: 2
+2025-12-08 20:49:38.343417 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . #connect
+2025-12-08 20:49:38.351314 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . 2 0 1 "21" "" -login "\r\n"
+2025-12-08 20:49:38.380044 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-08 20:49:39.842609 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . 2 0 3 "21" "" -go "try_enter" "NICK=tester123456" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-08 20:49:39.864696 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 #enter with account adc3b59a-56ec-4840-819b-7566259cc842 tester123456 nick: tester123456 id: 3
+2025-12-08 20:49:48.105499 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-08 20:49:48.234777 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:49:53.074779 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-08 20:49:53.147766 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:49:56.843564 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 0 7 "02" "key" -open "new_room_dgl.dcml" "ASTATE=1"
+2025-12-08 20:49:56.966705 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 0 8 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-08 20:49:57.680927 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 0 9 "02" "key" -open "reg_new_room.dcml" "ASTATE=1^VE_TITLE=welcome^VE_MAX_PL=5^VE_PASSWD=^VE_TYPE=0^VE_LEVEL=<%GV_VE_LEVEL>"
+2025-12-08 20:49:57.681703 +0000 warn  SimpleCossacksServer: Argument "<%GV_VE_LEVEL>" isn't numeric in numeric eq (==) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 241.
+2025-12-08 20:49:57.682271 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 #create room 3 welcome
+2025-12-08 20:50:00.536638 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 0 7 "02" "key" -open "join_game.dcml" "ASTATE=1^VE_RID=3"
+2025-12-08 20:50:00.541588 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 #join room 3 welcome
+2025-12-08 20:50:00.622553 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 0 8 "02" "key" -GETTBL "ROOMS_V2\00" "1\00" rows=202A0C44 #1/2
+2025-12-08 20:50:29.909651 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 0 11 "02" "key" -start "\00" "RN0 8810 120000 00000011 5001004.m3d\00" "2\00" "2\00" "48\00" "0\00" "0\00" "3\00" "48\00" "0\00" "1\00"
+2025-12-08 20:50:29.910697 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 #start his game 3 welcome
+2025-12-08 20:50:29.911242 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-08 20:50:29.911434 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-08 20:50:29.912646 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-08 20:50:29.912791 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-08 20:50:29.912916 +0000 warn  SimpleCossacksServer: Use of uninitialized value $host in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 244.
+2025-12-08 20:50:29.913393 +0000 warn  SimpleCossacksServer: bad response from http:///api/server.php : 599 Unparsable URL
+2025-12-08 20:50:29.957207 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 0 9 "02" "key" -start "\00" "RN0 8810 120000 00000011 5001004.m3d\00" "2\00" "2\00" "48\00" "0\00" "0\00" "3\00" "48\00" "0\00" "1\00"
+2025-12-08 20:50:29.957727 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 #start game 3 welcome
+2025-12-08 20:50:29.958304 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-08 20:50:29.958532 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-08 20:50:29.958996 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-08 20:50:29.959115 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-08 20:50:29.959206 +0000 warn  SimpleCossacksServer: Use of uninitialized value $host in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 244.
+2025-12-08 20:50:29.959394 +0000 warn  SimpleCossacksServer: bad response from http:///api/server.php : 599 Unparsable URL
+2025-12-08 20:51:37.694192 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 0 10 "02" "key" -leave 
+2025-12-08 20:51:37.695383 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 2 #leave room 3 welcome
+2025-12-08 20:51:38.926896 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 0 12 "02" "key" -leave 
+2025-12-08 20:51:38.927429 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 2 #leave his room 3 welcome
+2025-12-08 20:51:48.406088 +0000 info  SimpleCossacksServer:  #logout from account tester123456 with token adc3b59a-56ec-4840-819b-7566259cc842
+2025-12-08 20:51:48.485136 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester123456:3 #disconnect
+2025-12-08 20:51:49.989371 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token 07adbc89-db4c-47c5-ad33-f4c9427bb245
+2025-12-08 20:51:50.003086 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:2 #disconnect
+2025-12-12 19:17:28.000000 +0000 info  AnyEvent: Autoloaded model 'AnyEvent::Impl::Perl', using it.
+2025-12-12 19:17:28.233969 +0000 note  SimpleCossacksServer: Listen localhost:34002
+2025-12-12 19:18:41.000000 +0000 info  AnyEvent: Autoloaded model 'AnyEvent::Impl::Perl', using it.
+2025-12-12 19:18:41.921024 +0000 note  SimpleCossacksServer: Listen localhost:34002
+2025-12-12 20:00:20.806572 +0000 info  SimpleCossacksServer: 1 89.187.168.35 . #connect
+2025-12-12 20:00:20.809387 +0000 info  SimpleCossacksServer: 1 89.187.168.35 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 20:00:21.013802 +0000 info  SimpleCossacksServer: 1 89.187.168.35 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 20:00:35.939316 +0000 info  SimpleCossacksServer: 1 89.187.168.35 . 2 0 3 "21" "" -go "try_enter" "NICK=tester2" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-12 20:00:36.050071 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 #enter with account 00bb27c3-512d-4a59-a99d-b1c02ce37da1 tester2 nick: tester2 id: 1
+2025-12-12 20:00:38.016434 +0000 info  SimpleCossacksServer: 2 169.150.197.10 . #connect
+2025-12-12 20:00:38.017915 +0000 info  SimpleCossacksServer: 2 169.150.197.10 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 20:00:38.112133 +0000 info  SimpleCossacksServer: 2 169.150.197.10 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 20:00:51.185636 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 20:00:51.395629 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:00:54.539035 +0000 info  SimpleCossacksServer: 2 169.150.197.10 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 20:00:54.618011 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 #enter with account d362c0ff-afb0-4bb7-99d9-cf923ecfd3e3 sasuke_md nick: sasuke_md id: 2
+2025-12-12 20:01:01.428729 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 7 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:01:11.016915 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 20:01:11.152631 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:01:11.452126 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 9 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:01:17.078444 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 0 7 "02" "key" -open "new_room_dgl.dcml" "ASTATE=1"
+2025-12-12 20:01:17.202184 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 0 8 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:01:17.985929 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 0 9 "02" "key" -open "reg_new_room.dcml" "ASTATE=1^VE_TITLE=welcome^VE_MAX_PL=5^VE_PASSWD=^VE_TYPE=0^VE_LEVEL=<%GV_VE_LEVEL>"
+2025-12-12 20:01:17.986706 +0000 warn  SimpleCossacksServer: Argument "<%GV_VE_LEVEL>" isn't numeric in numeric eq (==) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 321.
+2025-12-12 20:01:17.988176 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 #create room 2 welcome
+2025-12-12 20:01:21.484417 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 11 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:01:23.572376 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 12 "02" "key" -open "join_game.dcml" "ASTATE=1^VE_RID=2"
+2025-12-12 20:01:23.576064 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 #join room 2 welcome
+2025-12-12 20:02:03.974868 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 0 11 "02" "key" -start "\00" "RN0 2D10 120000 00000011 5001004.m3d\00" "2\00" "2\00" "48\00" "0\00" "0\00" "1\00" "48\00" "0\00" "1\00"
+2025-12-12 20:02:03.975851 +0000 warn  SimpleCossacksServer: Odd number of elements in anonymous hash at /usr/local/share/perl5/SimpleCossacksServer/CommandController.pm line 263.
+2025-12-12 20:02:04.253120 +0000 error SimpleCossacksServer: bad response from http://localhost:8080/players/game-create with body HASH(0x339d5c8): 400 Bad Request
+2025-12-12 20:02:04.253355 +0000 error SimpleCossacksServer: Failed to send game creation request for player 2.
+2025-12-12 20:02:04.253540 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 #start his game 2 welcome
+2025-12-12 20:02:04.254031 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 20:02:04.254179 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 20:02:04.254859 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:02:04.254992 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:02:04.255105 +0000 warn  SimpleCossacksServer: Use of uninitialized value $host in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 244.
+2025-12-12 20:02:04.255418 +0000 warn  SimpleCossacksServer: bad response from http:///api/server.php : 599 Unparsable URL
+2025-12-12 20:02:04.397991 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 14 "02" "key" -start "\00" "RN0 2D10 120000 00000011 5001004.m3d\00" "2\00" "2\00" "48\00" "0\00" "0\00" "1\00" "48\00" "0\00" "1\00"
+2025-12-12 20:02:04.398367 +0000 warn  SimpleCossacksServer: Odd number of elements in anonymous hash at /usr/local/share/perl5/SimpleCossacksServer/CommandController.pm line 263.
+2025-12-12 20:02:04.977556 +0000 warn  SimpleCossacksServer: Use of uninitialized value $player_id in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 203.
+2025-12-12 20:02:04.977798 +0000 info  SimpleCossacksServer: Successfully sent game join request for player . Response: {"token":null,"loginStatus":"REJECTED","message":"Game not found."}
+2025-12-12 20:02:04.977988 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 #start game 2 welcome
+2025-12-12 20:02:04.978347 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 20:02:04.978447 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 20:02:04.978883 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:02:04.978982 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:02:04.979119 +0000 warn  SimpleCossacksServer: Use of uninitialized value $host in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 244.
+2025-12-12 20:02:04.979264 +0000 warn  SimpleCossacksServer: bad response from http:///api/server.php : 599 Unparsable URL
+2025-12-12 20:03:08.299726 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 0 15 "02" "key" -leave 
+2025-12-12 20:03:08.302094 +0000 warn  SimpleCossacksServer: Odd number of elements in anonymous hash at /usr/local/share/perl5/SimpleCossacksServer/CommandController.pm line 234.
+2025-12-12 20:03:08.375646 +0000 warn  SimpleCossacksServer: Use of uninitialized value $player_id in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 230.
+2025-12-12 20:03:08.375900 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player . Response: {"token":null,"loginStatus":"REJECTED","message":"Game not found."}
+2025-12-12 20:03:08.376111 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 2 #leave room 2 welcome
+2025-12-12 20:03:11.549802 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 0 12 "02" "key" -leave 
+2025-12-12 20:03:11.550597 +0000 warn  SimpleCossacksServer: Odd number of elements in anonymous hash at /usr/local/share/perl5/SimpleCossacksServer/CommandController.pm line 234.
+2025-12-12 20:03:11.593210 +0000 warn  SimpleCossacksServer: Use of uninitialized value $player_id in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 230.
+2025-12-12 20:03:11.593784 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player . Response: {"token":null,"loginStatus":"REJECTED","message":"Game not found."}
+2025-12-12 20:03:11.594192 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 2 #leave his room 2 welcome
+2025-12-12 20:03:19.838852 +0000 info  SimpleCossacksServer:  #logout from account tester2 with token 00bb27c3-512d-4a59-a99d-b1c02ce37da1
+2025-12-12 20:03:19.877856 +0000 info  SimpleCossacksServer: 1 89.187.168.35 tester2:1 #disconnect
+2025-12-12 20:03:21.675597 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token d362c0ff-afb0-4bb7-99d9-cf923ecfd3e3
+2025-12-12 20:03:21.693996 +0000 info  SimpleCossacksServer: 2 169.150.197.10 sasuke_md:2 #disconnect
+2025-12-12 20:45:18.000000 +0000 info  AnyEvent: Autoloaded model 'AnyEvent::Impl::Perl', using it.
+2025-12-12 20:45:18.850809 +0000 note  SimpleCossacksServer: Listen localhost:34002
+2025-12-12 20:46:21.855736 +0000 info  SimpleCossacksServer: 1 185.242.6.126 . #connect
+2025-12-12 20:46:21.860697 +0000 info  SimpleCossacksServer: 1 185.242.6.126 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 20:46:21.919359 +0000 info  SimpleCossacksServer: 1 185.242.6.126 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 20:46:23.320774 +0000 info  SimpleCossacksServer: 1 185.242.6.126 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 20:46:23.417023 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 #enter with account ac50f247-5f41-4b8e-91c9-f0c877b745f7 sasuke_md nick: sasuke_md id: 1
+2025-12-12 20:46:26.788192 +0000 info  SimpleCossacksServer: 2 86.38.98.7 . #connect
+2025-12-12 20:46:26.789922 +0000 info  SimpleCossacksServer: 2 86.38.98.7 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 20:46:27.108470 +0000 info  SimpleCossacksServer: 2 86.38.98.7 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 20:46:29.547899 +0000 info  SimpleCossacksServer: 2 86.38.98.7 . 2 0 3 "21" "" -go "try_enter" "NICK=tester2" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-12 20:46:29.596348 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 #enter with account fddffe50-2287-4d3b-afcf-f1c5e571c96e tester2 nick: tester2 id: 2
+2025-12-12 20:46:37.976095 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 20:46:38.098015 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:46:39.601970 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 0 6 "02" "key" -open "new_room_dgl.dcml" "ASTATE=<%ASTATE>"
+2025-12-12 20:46:41.709995 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 0 8 "02" "key" -open "reg_new_room.dcml" "ASTATE=1^VE_TITLE=welcome^VE_MAX_PL=5^VE_PASSWD=^VE_TYPE=0^VE_LEVEL=<%GV_VE_LEVEL>"
+2025-12-12 20:46:41.710520 +0000 warn  SimpleCossacksServer: Argument "<%GV_VE_LEVEL>" isn't numeric in numeric eq (==) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 322.
+2025-12-12 20:46:41.710918 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 #create room 2 welcome
+2025-12-12 20:46:41.828924 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 0 9 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:46:43.331404 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 20:46:43.913494 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 20:46:46.026741 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 0 6 "02" "key" -open "join_game.dcml" "ASTATE=1^VE_RID=2"
+2025-12-12 20:46:46.030401 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 #join room 2 welcome
+2025-12-12 20:47:21.220460 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 0 10 "02" "key" -start "\00" "RN0 BC61 120000 00000011 5001004.m3d\00" "2\00" "1\00" "48\00" "0\00" "0\00" "2\00" "48\00" "0\00" "1\00"
+2025-12-12 20:47:21.627024 +0000 info  SimpleCossacksServer: Successfully sent game creation request for player 1. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 20:47:21.627331 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 #start his game 2 welcome
+2025-12-12 20:47:21.627885 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 20:47:21.628027 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 20:47:21.628523 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:47:21.628640 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:47:21.628748 +0000 warn  SimpleCossacksServer: post_account_action 
+2025-12-12 20:47:21.897737 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 0 8 "02" "key" -start "\00" "RN0 BC61 120000 00000011 5001004.m3d\00" "2\00" "1\00" "48\00" "0\00" "0\00" "2\00" "48\00" "0\00" "1\00"
+2025-12-12 20:47:21.974339 +0000 info  SimpleCossacksServer: Successfully sent game join request for player 2. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 20:47:21.974708 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 #start game 2 welcome
+2025-12-12 20:47:21.975176 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 20:47:21.975322 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 20:47:21.975979 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:47:21.976125 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 20:47:21.976243 +0000 warn  SimpleCossacksServer: post_account_action 
+2025-12-12 20:48:51.254246 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 0 11 "02" "key" -leave 
+2025-12-12 20:48:51.351674 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player 1. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 20:48:51.351950 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 2 #leave his room 2 welcome
+2025-12-12 20:48:52.023706 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 0 9 "02" "key" -leave 
+2025-12-12 20:48:52.059711 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player 2. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 20:48:52.059978 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 2 #leave room 2 welcome
+2025-12-12 20:49:02.310060 +0000 info  SimpleCossacksServer:  #logout from account tester2 with token fddffe50-2287-4d3b-afcf-f1c5e571c96e
+2025-12-12 20:49:02.332227 +0000 info  SimpleCossacksServer: 2 86.38.98.7 tester2:2 #disconnect
+2025-12-12 20:49:05.392043 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token ac50f247-5f41-4b8e-91c9-f0c877b745f7
+2025-12-12 20:49:05.412324 +0000 info  SimpleCossacksServer: 1 185.242.6.126 sasuke_md:1 #disconnect
+2025-12-12 22:48:18.000000 +0000 info  AnyEvent: Autoloaded model 'AnyEvent::Impl::Perl', using it.
+2025-12-12 22:48:18.503715 +0000 note  SimpleCossacksServer: Listen localhost:34002
+2025-12-12 22:50:27.506735 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . #connect
+2025-12-12 22:50:27.515568 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 22:50:27.596631 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 22:50:31.185431 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . #disconnect
+2025-12-12 22:50:45.885901 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . #connect
+2025-12-12 22:50:45.898216 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 22:50:46.026964 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 22:50:49.758065 +0000 info  SimpleCossacksServer: 2 138.199.17.131 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 22:50:49.840037 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 #enter with account b5e63b03-ca58-4e53-ac2a-efadaf4d7424 sasuke_md nick: sasuke_md id: 1
+2025-12-12 22:50:59.253046 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . #connect
+2025-12-12 22:50:59.275000 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 22:50:59.294809 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 22:51:01.213721 +0000 info  SimpleCossacksServer: 3 185.102.217.160 . 2 0 3 "21" "" -go "try_enter" "NICK=tester2" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-12 22:51:01.236159 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 #enter with account 40dae81f-0eb2-4b91-8cee-5310eb9068e5 tester2 nick: tester2 id: 2
+2025-12-12 22:51:07.072462 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 22:51:07.255001 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 22:51:09.828892 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 0 6 "02" "key" -open "new_room_dgl.dcml" "ASTATE=1"
+2025-12-12 22:51:11.313280 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 0 8 "02" "key" -open "reg_new_room.dcml" "ASTATE=1^VE_TITLE=welcome^VE_MAX_PL=5^VE_PASSWD=^VE_TYPE=0^VE_LEVEL=<%GV_VE_LEVEL>"
+2025-12-12 22:51:11.314131 +0000 warn  SimpleCossacksServer: Argument "<%GV_VE_LEVEL>" isn't numeric in numeric eq (==) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 322.
+2025-12-12 22:51:11.314825 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 #create room 2 welcome
+2025-12-12 22:51:11.487987 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 0 9 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 22:51:17.068639 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 22:51:17.162523 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 22:51:19.359380 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 0 6 "02" "key" -open "join_game.dcml" "ASTATE=1^VE_RID=2"
+2025-12-12 22:51:19.362823 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 #join room 2 welcome
+2025-12-12 22:51:49.387136 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 0 10 "02" "key" -start "\00" "RN0 1158 120000 00000011 5001004.m3d\00" "2\00" "1\00" "48\00" "0\00" "0\00" "2\00" "48\00" "0\00" "1\00"
+2025-12-12 22:51:49.507688 +0000 info  SimpleCossacksServer: Successfully sent game creation request for player 1. Response: {"token":null,"loginStatus":"REJECTED","message":"A game with this name already exists."}
+2025-12-12 22:51:49.508100 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 #start his game 2 welcome
+2025-12-12 22:51:49.508748 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 22:51:49.508963 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 22:51:49.509644 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 22:51:49.509933 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 22:51:49.510133 +0000 warn  SimpleCossacksServer: post_account_action 
+2025-12-12 22:51:49.704293 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 0 8 "02" "key" -start "\00" "RN0 1158 120000 00000011 5001004.m3d\00" "2\00" "1\00" "48\00" "0\00" "0\00" "2\00" "48\00" "0\00" "1\00"
+2025-12-12 22:51:49.740403 +0000 info  SimpleCossacksServer: Successfully sent game join request for player 2. Response: {"token":null,"loginStatus":"REJECTED","message":"Player is already in this game."}
+2025-12-12 22:51:49.740849 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 #start game 2 welcome
+2025-12-12 22:51:49.741451 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 22:51:49.741744 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 22:51:49.742590 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 22:51:49.742860 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 22:51:49.743016 +0000 warn  SimpleCossacksServer: post_account_action 
+2025-12-12 22:53:03.507380 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 0 9 "02" "key" -leave 
+2025-12-12 22:53:03.555906 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player 2. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 22:53:03.556135 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 #leave room 2 welcome
+2025-12-12 22:53:29.191946 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 0 10 "02" "key" -leave 
+2025-12-12 22:53:29.192500 +0000 warn  SimpleCossacksServer: 3 185.102.217.160 tester2:2 2 have not room for leave
+2025-12-12 22:53:36.300417 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 0 11 "02" "key" -leave 
+2025-12-12 22:53:36.354537 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player 1. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 22:53:36.354867 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 2 #leave his room 2 welcome
+2025-12-12 22:53:47.875031 +0000 info  SimpleCossacksServer:  #logout from account tester2 with token 40dae81f-0eb2-4b91-8cee-5310eb9068e5
+2025-12-12 22:53:47.906946 +0000 info  SimpleCossacksServer: 3 185.102.217.160 tester2:2 #disconnect
+2025-12-12 22:53:52.034008 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token b5e63b03-ca58-4e53-ac2a-efadaf4d7424
+2025-12-12 22:53:52.061383 +0000 info  SimpleCossacksServer: 2 138.199.17.131 sasuke_md:1 #disconnect
+2025-12-12 23:17:13.000000 +0000 info  AnyEvent: Autoloaded model 'AnyEvent::Impl::Perl', using it.
+2025-12-12 23:17:13.373697 +0000 note  SimpleCossacksServer: Listen localhost:34002
+2025-12-12 23:17:55.394114 +0000 info  SimpleCossacksServer: 1 146.70.111.92 . #connect
+2025-12-12 23:17:55.397672 +0000 info  SimpleCossacksServer: 1 146.70.111.92 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 23:17:55.478719 +0000 info  SimpleCossacksServer: 1 146.70.111.92 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 23:17:56.917161 +0000 info  SimpleCossacksServer: 1 146.70.111.92 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 23:17:56.995881 +0000 info  SimpleCossacksServer: 1 146.70.111.92 sasuke_md:1 2 #enter with account 5b68cae0-1181-4826-a43f-091063084c37 sasuke_md nick: sasuke_md id: 1
+2025-12-12 23:18:34.807568 +0000 info  SimpleCossacksServer: 2 89.187.168.35 . #connect
+2025-12-12 23:18:34.830625 +0000 info  SimpleCossacksServer: 2 89.187.168.35 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 23:18:34.901103 +0000 info  SimpleCossacksServer: 2 89.187.168.35 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 23:18:36.515971 +0000 info  SimpleCossacksServer: 2 89.187.168.35 . 2 0 3 "21" "" -go "try_enter" "NICK=tester2" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-12 23:18:36.571938 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 #enter with account f0c6fba5-a876-441d-9b2a-be9f1d7bcb18 tester2 nick: tester2 id: 2
+2025-12-12 23:18:52.146301 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 23:18:52.276894 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:18:54.652637 +0000 info  SimpleCossacksServer: 3 146.70.111.84 . #connect
+2025-12-12 23:19:02.062572 +0000 info  SimpleCossacksServer: 3 146.70.111.84 . 2 0 5 "21" "" -login "\r\n"
+2025-12-12 23:19:02.138575 +0000 info  SimpleCossacksServer: 3 146.70.111.84 . 2 0 6 "21" "" -open "enter.dcml"
+2025-12-12 23:19:02.301064 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 7 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:19:03.328392 +0000 info  SimpleCossacksServer: 3 146.70.111.84 . 2 0 7 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 23:19:03.416507 +0000 info  SimpleCossacksServer: 3 146.70.111.84 sasuke_md:3 2 #enter with account f66cb91c-0cf5-4a76-8856-e7c683f2ba6f sasuke_md nick: sasuke_md id: 3
+2025-12-12 23:19:12.376816 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 9 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:19:22.146723 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 11 "02" "key" -open "users_list.dcml\00"
+2025-12-12 23:19:22.406729 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 12 "02" "key" -GETTBL "players_list\00" "0\00" rows= #1/2
+2025-12-12 23:19:32.446855 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 14 "02" "key" -GETTBL "players_list\00" "17\00" rows=23180492:4187069A:32BD0592:3CB6060D:2BB604F6:38DC0619:349B05B1:341205A8:33E205A3:561A0760:5B0807B0:36BD05B6:5A9E07D7:5EE20719:2D340534:53960698:39AC05DA #1/2
+2025-12-12 23:19:42.480310 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 16 "02" "key" -GETTBL "players_list\00" "17\00" rows=23180492:4187069A:32BD0592:3CB6060D:2BB604F6:38DC0619:349B05B1:341205A8:33E205A3:561A0760:5B0807B0:36BD05B6:5A9E07D7:5EE20719:2D340534:53960698:39AC05DA #1/2
+2025-12-12 23:19:44.023452 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 17 "02" "key" -open "startup"
+2025-12-12 23:19:49.183408 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 19 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:19:59.208549 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 2 0 21 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:20:13.860733 +0000 info  SimpleCossacksServer:  #logout from account tester2 with token f0c6fba5-a876-441d-9b2a-be9f1d7bcb18
+2025-12-12 23:20:13.912357 +0000 info  SimpleCossacksServer: 2 89.187.168.35 tester2:2 #disconnect
+2025-12-12 23:21:14.482739 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token f66cb91c-0cf5-4a76-8856-e7c683f2ba6f
+2025-12-12 23:21:14.569192 +0000 info  SimpleCossacksServer: 3 146.70.111.84 sasuke_md:3 #disconnect
+2025-12-12 23:21:31.758997 +0000 info  SimpleCossacksServer: 4 169.150.197.10 . #connect
+2025-12-12 23:21:31.760710 +0000 info  SimpleCossacksServer: 4 169.150.197.10 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 23:21:31.878925 +0000 info  SimpleCossacksServer: 4 169.150.197.10 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 23:21:32.998198 +0000 info  SimpleCossacksServer: 4 169.150.197.10 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 23:21:33.034117 +0000 info  SimpleCossacksServer: 4 169.150.197.10 sasuke_md:4 2 #enter with account 5d9e1ab6-c29d-4d97-b86e-290c9d93c0ea sasuke_md nick: sasuke_md id: 4
+2025-12-12 23:21:45.963948 +0000 info  SimpleCossacksServer: 5 185.242.6.126 . #connect
+2025-12-12 23:21:45.967547 +0000 info  SimpleCossacksServer: 5 185.242.6.126 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 23:21:46.043955 +0000 info  SimpleCossacksServer: 5 185.242.6.126 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 23:21:49.708230 +0000 info  SimpleCossacksServer: 5 185.242.6.126 . 2 0 3 "21" "" -go "try_enter" "NICK=tester2" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-12 23:21:49.747276 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 2 #enter with account a26dfdda-43bb-4442-aceb-3c520cf12016 tester2 nick: tester2 id: 5
+2025-12-12 23:22:04.999768 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 23:22:05.120381 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:22:15.157649 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 2 0 7 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:22:25.307879 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 2 0 9 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:22:35.216403 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 2 0 11 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:22:45.254216 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 2 0 13 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:22:53.731075 +0000 info  SimpleCossacksServer:  #logout from account tester2 with token a26dfdda-43bb-4442-aceb-3c520cf12016
+2025-12-12 23:22:53.772706 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token 5d9e1ab6-c29d-4d97-b86e-290c9d93c0ea
+2025-12-12 23:22:53.826397 +0000 info  SimpleCossacksServer: 5 185.242.6.126 tester2:5 #disconnect
+2025-12-12 23:22:53.842814 +0000 info  SimpleCossacksServer: 4 169.150.197.10 sasuke_md:4 #disconnect
+2025-12-12 23:23:21.939881 +0000 info  SimpleCossacksServer: 6 188.27.154.67 . #connect
+2025-12-12 23:23:21.948292 +0000 info  SimpleCossacksServer: 6 188.27.154.67 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 23:23:22.030467 +0000 info  SimpleCossacksServer: 6 188.27.154.67 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 23:23:22.890741 +0000 info  SimpleCossacksServer: 6 188.27.154.67 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 23:23:22.947704 +0000 info  SimpleCossacksServer: 6 188.27.154.67 sasuke_md:6 2 #enter with account 152d3f1f-dcd9-4c14-a914-8ace307f059d sasuke_md nick: sasuke_md id: 6
+2025-12-12 23:24:00.220518 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token 152d3f1f-dcd9-4c14-a914-8ace307f059d
+2025-12-12 23:24:00.314388 +0000 info  SimpleCossacksServer: 6 188.27.154.67 sasuke_md:6 #disconnect
+2025-12-12 23:25:25.939460 +0000 info  SimpleCossacksServer: 7 217.138.216.222 . #connect
+2025-12-12 23:25:25.943727 +0000 info  SimpleCossacksServer: 7 217.138.216.222 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 23:25:26.039779 +0000 info  SimpleCossacksServer: 7 217.138.216.222 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 23:25:26.934463 +0000 info  SimpleCossacksServer: 7 217.138.216.222 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-12 23:25:27.000787 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 #enter with account 6c88efcf-d911-4f1c-a5c8-34f7e5eafd9d sasuke_md nick: sasuke_md id: 7
+2025-12-12 23:25:43.985456 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 23:25:44.124124 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:25:54.156431 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 7 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:26:04.188841 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 9 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:26:14.214509 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 11 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:26:24.250322 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 13 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:26:34.285883 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 15 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:26:44.310673 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 17 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:26:54.344158 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 19 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:04.369791 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 21 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:14.402702 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 23 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:24.439937 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 25 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:33.137825 +0000 info  SimpleCossacksServer: 8 138.199.17.131 . #connect
+2025-12-12 23:27:33.145421 +0000 info  SimpleCossacksServer: 8 138.199.17.131 . 2 0 1 "21" "" -login "\r\n"
+2025-12-12 23:27:33.239396 +0000 info  SimpleCossacksServer: 8 138.199.17.131 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-12 23:27:34.474322 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 27 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:36.548649 +0000 info  SimpleCossacksServer: 8 138.199.17.131 . 2 0 3 "21" "" -go "try_enter" "NICK=tester2" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "315"
+2025-12-12 23:27:36.625314 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 #enter with account 90c75a11-1256-49ef-ae61-52f168fce41f tester2 nick: tester2 id: 8
+2025-12-12 23:27:44.497772 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 29 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:50.129314 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-12 23:27:50.274183 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:53.308923 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 31 "02" "key" -open "new_room_dgl.dcml" "ASTATE=1"
+2025-12-12 23:27:53.433089 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 32 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-12 23:27:54.312513 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 33 "02" "key" -open "reg_new_room.dcml" "ASTATE=1^VE_TITLE=welcome^VE_MAX_PL=5^VE_PASSWD=^VE_TYPE=0^VE_LEVEL=<%GV_VE_LEVEL>"
+2025-12-12 23:27:54.313246 +0000 warn  SimpleCossacksServer: Argument "<%GV_VE_LEVEL>" isn't numeric in numeric eq (==) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 322.
+2025-12-12 23:27:54.313746 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 #create room 2 welcome
+2025-12-12 23:27:56.969352 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 0 7 "02" "key" -open "join_game.dcml" "ASTATE=1^VE_RID=2"
+2025-12-12 23:27:56.972456 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 #join room 2 welcome
+2025-12-12 23:27:57.153001 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 0 8 "02" "key" -GETTBL "ROOMS_V2\00" "1\00" rows=1FCE0C40 #1/2
+2025-12-12 23:28:32.960652 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 35 "02" "key" -start "\00" "RN0 FB8E 120000 00000011 5001004.m3d\00" "2\00" "7\00" "48\00" "0\00" "0\00" "8\00" "48\00" "0\00" "1\00"
+2025-12-12 23:28:33.015448 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 0 9 "02" "key" -start "\00" "RN0 FB8E 120000 00000011 5001004.m3d\00" "2\00" "7\00" "48\00" "0\00" "0\00" "8\00" "48\00" "0\00" "1\00"
+2025-12-12 23:28:33.046746 +0000 info  SimpleCossacksServer: Successfully sent game join request for player 8. Response: {"token":null,"loginStatus":"REJECTED","message":"Player is already in this game."}
+2025-12-12 23:28:33.047024 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 #start game 2 welcome
+2025-12-12 23:28:33.047566 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 23:28:33.047714 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 23:28:33.048465 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 23:28:33.048599 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 23:28:33.048690 +0000 warn  SimpleCossacksServer: post_account_action 
+2025-12-12 23:28:33.062783 +0000 info  SimpleCossacksServer: Successfully sent game creation request for player 7. Response: {"token":null,"loginStatus":"REJECTED","message":"A game with this name already exists."}
+2025-12-12 23:28:33.063155 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 #start his game 2 welcome
+2025-12-12 23:28:33.063607 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 231.
+2025-12-12 23:28:33.063716 +0000 warn  SimpleCossacksServer: Use of uninitialized value in lc at /usr/local/share/perl5/SimpleCossacksServer.pm line 236.
+2025-12-12 23:28:33.063904 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"account_id"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 23:28:33.064014 +0000 warn  SimpleCossacksServer: Use of uninitialized value $params{"key"} in concatenation (.) or string at /usr/local/share/perl5/SimpleCossacksServer.pm line 241.
+2025-12-12 23:28:33.064095 +0000 warn  SimpleCossacksServer: post_account_action 
+2025-12-12 23:29:48.492019 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 0 36 "02" "key" -leave 
+2025-12-12 23:29:48.580703 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player 7. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 23:29:48.580939 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 2 #leave his room 2 welcome
+2025-12-12 23:29:50.699698 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 0 10 "02" "key" -leave 
+2025-12-12 23:29:50.734752 +0000 info  SimpleCossacksServer: Successfully sent game leave request for player 8. Response: {"token":null,"loginStatus":"SUCCESS","message":null}
+2025-12-12 23:29:50.735019 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 2 #leave room 2 welcome
+2025-12-12 23:30:03.190043 +0000 info  SimpleCossacksServer:  #logout from account tester2 with token 90c75a11-1256-49ef-ae61-52f168fce41f
+2025-12-12 23:30:03.215648 +0000 info  SimpleCossacksServer: 8 138.199.17.131 tester2:8 #disconnect
+2025-12-12 23:30:04.417304 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token 6c88efcf-d911-4f1c-a5c8-34f7e5eafd9d
+2025-12-12 23:30:04.441132 +0000 info  SimpleCossacksServer: 7 217.138.216.222 sasuke_md:7 #disconnect
+
+
+
+2025-12-13 17:14:01.000000 +0000 info  AnyEvent: Autoloaded model 'AnyEvent::Impl::Perl', using it.
+2025-12-13 17:14:01.258905 +0000 note  SimpleCossacksServer: Listen localhost:34002
+2025-12-13 17:15:49.111234 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . #connect
+2025-12-13 17:15:49.118779 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 1 "21" "" -login "\r\n"
+2025-12-13 17:15:49.199413 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 2 "21" "" -open "enter.dcml"
+2025-12-13 17:15:50.248862 +0000 info  SimpleCossacksServer: 1 188.27.154.67 . 2 0 3 "21" "" -go "try_enter" "NICK=sasuke_md" "TYPE=login_view" "PASSWORD=..." "LOGGED_IN=" "HEIGHT:=" "420"
+2025-12-13 17:15:50.337769 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 #enter with account b8909ac6-649e-4fed-bcd1-17f7173ddfc4 sasuke_md nick: sasuke_md id: 1
+2025-12-13 17:16:06.961107 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 0 4 "02" "key" -open "startup.dcml\00" "m_page=0\00\r\n"
+2025-12-13 17:16:07.120155 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 0 5 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-13 17:16:11.352437 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 0 6 "02" "key" -open "games_list.dcml"
+2025-12-13 17:16:11.676335 +0000 warn  SimpleCossacksServer: Use of uninitialized value $seconds in numeric lt (<) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 685.
+2025-12-13 17:16:11.677416 +0000 warn  SimpleCossacksServer: Use of uninitialized value $seconds in division (/) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 685.
+2025-12-13 17:16:11.677587 +0000 warn  SimpleCossacksServer: Use of uninitialized value in subroutine entry at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 615.
+2025-12-13 17:16:11.677707 +0000 warn  SimpleCossacksServer: Use of uninitialized value $seconds in numeric lt (<) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 685.
+2025-12-13 17:16:11.677795 +0000 warn  SimpleCossacksServer: Use of uninitialized value $seconds in division (/) at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 685.
+2025-12-13 17:16:11.677881 +0000 warn  SimpleCossacksServer: Use of uninitialized value in subroutine entry at /usr/local/share/perl5/SimpleCossacksServer/CommandController/Open.pm line 615.
+2025-12-13 17:16:11.813390 +0000 error SimpleCossacksServer: Not a HASH reference at /usr/local/share/perl5/SimpleCossacksServer/CommandController.pm line 128.
+2025-12-13 17:16:16.824048 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 0 8 "02" "key" -GETTBL "games_list\00" "0\00" rows= #1/2
+2025-12-13 17:16:16.824858 +0000 error SimpleCossacksServer: Not a HASH reference at /usr/local/share/perl5/SimpleCossacksServer/CommandController.pm line 128.
+2025-12-13 17:16:21.847223 +0000 error SimpleCossacksServer: Not a HASH reference at /usr/local/share/perl5/SimpleCossacksServer/CommandController.pm line 128.
+2025-12-13 17:16:25.507384 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 0 10 "02" "key" -open "startup"
+2025-12-13 17:16:25.629168 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 0 11 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-13 17:16:35.659143 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 2 0 13 "02" "key" -GETTBL "ROOMS_V2\00" "0\00" rows= #1/2
+2025-12-13 17:16:38.784320 +0000 info  SimpleCossacksServer:  #logout from account sasuke_md with token b8909ac6-649e-4fed-bcd1-17f7173ddfc4
+2025-12-13 17:16:38.852201 +0000 info  SimpleCossacksServer: 1 188.27.154.67 sasuke_md:1 #disconnect
