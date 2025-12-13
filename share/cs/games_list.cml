@@ -1,0 +1,47 @@
+<?~ SET bottom_height = 32 ~?>
+<?~ USE POSIX ~?>
+<?~ USE CMLStringArgFilter ~?>
+<?~ USE CMDFilter ~?>
+#resize(LW_cfile&<#WinH#>&height.dat|LW_show&<\52ESIZE>
+#exec(GW\7Copen\26resize\26height=<#WinH#>\29
+<\52ESIZE>)
+
+#def_panel(15,Internet/pix/i_bor%d,48,49,50,51,52,53,55,54,67,45)
+#font(YF,WF,WF)
+#box[%BOTTOM](x:0,w:100%,y:100%-<? bottom_height ?>,h:<? bottom_height ?>)
+#pan(%BOTTOM[x:0-1,w:100%+2,y:0-1,h:100%+2],1)
+#btn(%BOTTOM[x:5,y:4,w:80,h:28],{GW|open&startup},"Back")
+//#btn(%BOTTOM[x:95,y:4,w:80,h:28],{GW|open&game_details&ID=<%GM_ID>^BACKTO=games_list},"Details")
+
+#font(YF,YF,YF)
+#rtxt(%BOTTOM[x1:100%-14,x:300,y:7,h:24],{},"Games List")
+
+
+#font(YF,WF,WF)
+#box[%LBX](x:0,y:0,w:100%,h:100%-<? bottom_height ?>)
+
+#apan(%LBX[x:1,y:1,w:23,h:24],{LW_file&Internet/Cash/games_table_dgl.dcml},"0")
+<GAMES>
+#DBTBL[%GMST](%LBX[x:1,y:1,w:100%-30,h:100%],{games_list}{%GM_C},"<? server.config.table_timeout ?>",TBL_S,5,1,
+4,"#",INT,INT,NON,%GM_NUM,
+0,"ID",NON,NON,NON,%GM_ID,
+35,"Name",STR,STR,STR,%GM_NAME,
+15,"Duration",STR,STR,STR,%GM_DURATION,
+50,"Details",STR,STR,STR,%GM_DETAILS)
+#VSCROLL[%S1](%LBX[x:100%-30,y:1,w:30,h:100%],%GMST)
+<GAMES>
+
+<NGDLG>
+<NGDLG>
+
+<RESIZE>
+<? IF window_size == 'large' ~?>
+#large
+<? END ?>
+<RESIZE>
+
+#save(games_table_dgl.dcml,GAMES)
+
+#block(cancel.cml,CAN)<NGDLG>
+<NGDLG>
+#end(CAN)

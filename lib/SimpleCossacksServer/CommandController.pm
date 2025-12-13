@@ -103,11 +103,35 @@ sub GETTBL : Command {
     }
 
     my @new_rows;
-    for my $id (keys %server_rows_by_id) {
-        push @new_rows, $server_rows_by_id{$id} unless $client_ids{$id};
+    for my $row (@$players_on_server) {
+        my $id = $row->[1];
+        push @new_rows, $row unless $client_ids{$id};
     }
-    
-    @new_rows = sort { $a->[0] <=> $b->[0] } @new_rows;
+
+    $h->push_command( LW_dtbl => map{"$_\0"} $name, pack 'L*', @deleted_ids);
+    $h->push_command( LW_tbl => map{"$_\0"} $name, scalar(@new_rows), map { @$_ } @new_rows );
+    return;
+  }
+  if ($name eq 'games_list') {
+    my $games_on_server = SimpleCossacksServer::CommandController::Open->get_games_list($h) || [];
+    my %server_games_rows_by_id;
+    for my $row (@$games_on_server) {
+        $server_games_rows_by_id{$row->[1]} = $row;
+    }
+
+    my @client_ids = unpack 'L*', $rows_pack;
+    my %client_ids = map { $_ => 1 } @client_ids;
+
+    my @deleted_ids;
+    for my $id (@client_ids) {
+        push @deleted_ids, $id unless $server_games_rows_by_id{$id};
+    }
+
+    my @new_rows;
+    for my $row (@$games_on_server) {
+        my $id = $row->[1];
+        push @new_rows, $row unless $client_ids{$id};
+    }
 
     $h->push_command( LW_dtbl => map{"$_\0"} $name, pack 'L*', @deleted_ids);
     $h->push_command( LW_tbl => map{"$_\0"} $name, scalar(@new_rows), map { @$_ } @new_rows );
@@ -145,6 +169,7 @@ sub alive : Command {
 
 sub stats : Command {
   my($self, $h, $rawstat, $room_id) = @_;
+  $h->log->warn("#stats for room " . $room_id);
   state $intervals = {
     wood        => 60 * 25,
     stone       => 60 * 25,
@@ -232,9 +257,15 @@ sub leave : Command {
     my $room = $h->server->leave_room( $h->connection->data->{id} );
     delete $h->server->data->{alive_timers}{ $h->connection->data->{id} };
     if($room) {
+      my $p = {
+        gameName => $room->{title},
+        playerId => $h->connection->data->{id},
+      };
       if($room->{host_id} == $h->connection->data->{id}) {
+        SimpleCossacksServer::CommandController::Open->sendLeaveGameRequest($h, $p);
         $h->log->info($h->connection->log_message . " " . $h->req->ver . " #leave his room $room->{id} $room->{title}");
       } else {
+        SimpleCossacksServer::CommandController::Open->sendLeaveGameRequest($h, $p);
         $h->log->info($h->connection->log_message . " " . $h->req->ver . " #leave room $room->{id} $room->{title}");
       }
     } else {
@@ -255,9 +286,15 @@ sub start : Command {
   }
   my $room = $h->server->start_room( $h->connection->data->{id}, { ai => scalar($sav =~ /<AI>/) } );
   if($room) {
+    my $p = {
+        gameName => $room->{title},
+        playerId => $h->connection->data->{id},
+      };
     if($room->{host_id} == $h->connection->data->{id}) {
+      SimpleCossacksServer::CommandController::Open->sendCreateGameRequest($h, $p);
       $h->log->info($h->connection->log_message . " " . $h->req->ver . " #start his game $room->{id} $room->{title}");
     } else {
+      SimpleCossacksServer::CommandController::Open->sendJoinGameRequest($h, $p);
       $h->log->info($h->connection->log_message . " " . $h->req->ver . " #start game $room->{id} $room->{title}");
     }
   } else {
@@ -329,22 +366,23 @@ sub start : Command {
 
 sub endgame : Command {
     my($self, $h, $game_id, $player_id, $result) = @_;
-    ($_) = /(-?\d+)/ for $game_id, $player_id, $result;
-    $player_id = unpack 'L', pack 'l', $player_id;
-    my $id = $h->connection->data->{id};
-    my $nick_name = ($h->server->data->{players}{$player_id} ? $h->server->data->{players}{$player_id}{nick} : '.') . ":$player_id";
-    my $result_str = $result == 1 ? 'loose' :
-        $result == 2 ? 'win' :
-        $result == 5 ? 'disconnect' :
-        "?$result?"
-    ;
-    my $room = $h->server->data->{rooms_by_id}{ $game_id };
-    $h->log->info(
-        $h->connection->log_message . " " . $h->req->ver . " #send game result: $nick_name $result_str in "
-        . ($room && $id && $room->{host_id} == $id ? "his " : "" )
-        . "game $game_id"
-        . ($room ? " $room->{title}" : "")
-    );
+    $h->log->warn("endgame for player $player_id. ");
+    # ($_) = /(-?\d+)/ for $game_id, $player_id, $result;
+    # $player_id = unpack 'L', pack 'l', $player_id;
+    # my $id = $h->connection->data->{id};
+    # my $nick_name = ($h->server->data->{players}{$player_id} ? $h->server->data->{players}{$player_id}{nick} : '.') . ":$player_id";
+    # my $result_str = $result == 1 ? 'loose' :
+    #     $result == 2 ? 'win' :
+    #     $result == 5 ? 'disconnect' :
+    #     "?$result?"
+    # ;
+    # my $room = $h->server->data->{rooms_by_id}{ $game_id };
+    # $h->log->info(
+    #     $h->connection->log_message . " " . $h->req->ver . " #send game result: $nick_name $result_str in "
+    #     . ($room && $id && $room->{host_id} == $id ? "his " : "" )
+    #     . "game $game_id"
+    #     . ($room ? " $room->{title}" : "")
+    # );
 }
 sub upfile  : Command {}
 sub unsync  : Command {}

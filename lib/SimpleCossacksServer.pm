@@ -241,22 +241,23 @@ sub post_account_action {
       $body .= ($i ? "&" : "" ) . "$name=" . ( ref($params{$name}) ? JSON::to_json($params{$name}) : $params{$name} );
       $i++
     }
-    my $url = "http://$host/api/server.php";
-    AnyEvent::HTTP::http_post $url, $body,
-      headers => {
-        "Content-Type" => "application/x-www-form-urlencoded",
-        "Content-Length" => length($body),
-        "UserAgent" => "cossacks-server.net bot",
-        "X-Client-IP" => $h->connection->ip,
-      },
-      sub {
-        my($data, $headers) = @_;
-        unless($headers->{Status} >= 200 && $headers->{Status} < 300) {
-          $h->log->warn("bad response from $url : " . $headers->{Status} . " " . $headers->{Reason});
-        } 
-      }
-    ;
+    # my $url = "http://$host/api/server.php";
+  #   AnyEvent::HTTP::http_post $url, $body,
+  #     headers => {
+  #       "Content-Type" => "application/x-www-form-urlencoded",
+  #       "Content-Length" => length($body),
+  #       "UserAgent" => "cossacks-server.net bot",
+  #       "X-Client-IP" => $h->connection->ip,
+  #     },
+  #     sub {
+  #       my($data, $headers) = @_;
+  #       unless($headers->{Status} >= 200 && $headers->{Status} < 300) {
+  #         $h->log->warn("bad response from $url : " . $headers->{Status} . " " . $headers->{Reason});
+  #       } 
+  #     }
+  #   ;
   }
+  $h->log->warn("post_account_action ");
 }
 
 sub export_rooms {

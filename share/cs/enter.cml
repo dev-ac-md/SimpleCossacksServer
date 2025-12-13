@@ -2,18 +2,13 @@
 #pan[%MPN](%BOX[x:0,y:0,w:100%,h:100%],8)
 
 #font(WF,WF,WF)
-<? IF type == "login_view" ?>
 #ctxt[%TIT](%BOX[x:0,y:0,w:100%,h:30],{},"American Conquest Server - Login")
-<? ELSE ?>
-#ctxt[%TIT](%BOX[x:0,y:0,w:100%,h:30],{},"American Conquest Server - annonymous")
-<? END ?>
 
 #def_panel(15,Internet/pix/i_bor%d,48,49,50,51,52,53,55,54,67,45)
 #font(YF,WF,WF)
 #box[%BOTTOM](x:550,y:230,w:340,h:30)
 #pan(%BOTTOM[x:0-1,w:100%+2,y:0-1,h:100%+2],1)
-#btn(%BOTTOM[x:5,y:4,w:80,h:28],{<? IF type == "login_view" ?>GW|open&enter.dcml<? END ?>},"Anonymous")
-#btn(%BOTTOM[x:95,y:4,w:80,h:28],{<? IF type != "login_view" ?>GW|open&enter.dcml&TYPE=login_view<? END ?>},"Login")
+#btn(%BOTTOM[x:5,y:4,w:80,h:28],{},"Login")
 #btn(%BOTTOM[x:185,y:4,w:80,h:28],{GW|open&register.dcml},"Register")
 #font(WF,WF,WF)
 #txt(%BOX[x:10,y:82,w:100%,h:24],{},"Nickname:")
@@ -21,17 +16,13 @@
 
 #pan[%P_NICK](%BOX[x:100,x1:100%-10,y:80,h:24],4)
 
-<? IF type == "login_view" ?>
-  #edit(%BOX[x:100,x1:100%-10,y:78,h:24],{%GV_NICKNAME})
-  #txt(%BOX[x:10,y:112,w:100%,h:24],{},"Password:")
-  #font(YF,WF,WF)
-  #pan[%P_PASS](%BOX[x:100,x1:100%-10,y:110,h:24],2)
-  #edit[%E_PASS](%BOX[x:100,x1:100%-10,y:108,h:24],{%GV_PASSWORD})
+#edit(%BOX[x:100,x1:100%-10,y:78,h:24],{%GV_NICKNAME})
+#txt(%BOX[x:10,y:112,w:100%,h:24],{},"Password:")
+#font(YF,WF,WF)
+#pan[%P_PASS](%BOX[x:100,x1:100%-10,y:110,h:24],2)
+#edit[%E_PASS](%BOX[x:100,x1:100%-10,y:108,h:24],{%GV_PASSWORD})
 
-  #txt(%BOX[x:10,y:100%-50,w:100%,h:24],{},"Note: For password recovery write to dev.94.md@gmail.com using your registration email!")
-<? ELSE ?>
-  #edit(%BOX[x:100,x1:100%-10,y:78,h:24],{%GV_NICKNAME_ANNON})
-<? END ?>
+#txt(%BOX[x:10,y:100%-50,w:100%,h:24],{},"Note: For password recovery write to dev.94.md@gmail.com using your registration email!")
 
 <? IF error ?>
   #font(SYF,SWF,SWF)
@@ -41,5 +32,5 @@
 #font(YF,WF,RF)
 
 #exec(LW_gvar&%HEIGHT&Internet/Cash/height.dat)
-#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{GW|go&try_enter&NICK=<? IF type == "login_view" ?><%GV_NICKNAME><? ELSE ?><%GV_NICKNAME_ANNON><? END ?>&TYPE=<? type ?>&PASSWORD=<%GV_PASSWORD>&LOGGED_IN=<? logged_in ?>&HEIGHT:=&<@%HEIGHT>|LW_lockall},"Enter")
+#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{GW|go&try_enter&NICK=<%GV_NICKNAME>&TYPE=<? type ?>&PASSWORD=<%GV_PASSWORD>&LOGGED_IN=<? logged_in ?>&HEIGHT:=&<@%HEIGHT>|LW_lockall},"Enter")
 #sbtn[%B_RGST](%BOX[x:185,y:100%+8,w:160,h:24],{LW_key&#CANCEL|LW_lockall},"Cancel")

@@ -8,19 +8,18 @@
 #font(YF,WF,WF)
 #box[%BOTTOM](x:550,y:230,w:340,h:30)
 #pan(%BOTTOM[x:0-1,w:100%+2,y:0-1,h:100%+2],1)
-#btn(%BOTTOM[x:5,y:4,w:80,h:28],{GW|open&enter.dcml},"Anonymous")
-#btn(%BOTTOM[x:95,y:4,w:80,h:28],{GW|open&enter.dcml&TYPE=login_view},"Login")
+#btn(%BOTTOM[x:5,y:4,w:80,h:28],{GW|open&enter.dcml},"Login")
 #btn(%BOTTOM[x:185,y:4,w:80,h:28],{},"Register")
 #font(WF,WF,WF)
 #txt(%BOX[x:10,y:82,w:100%,h:24],{},"Nickname:")
 #font(YF,YF,WF)
 #pan[%P_NICK](%BOX[x:100,x1:100%-10,y:80,h:24],4)
-#edit(%BOX[x:100,x1:100%-10,y:78,h:24],{%GV_NICKNAME_REG})
+#edit(%BOX[x:100,x1:100%-10,y:78,h:24],{%GV_NICKNAME})
 
 #txt(%BOX[x:10,y:112,w:100%,h:24],{},"Password:")
 #font(YF,YF,WF)
 #pan[%P_NICK](%BOX[x:100,x1:100%-10,y:110,h:24],4)
-#edit(%BOX[x:100,x1:100%-10,y:108,h:24],{%GV_PASSWORD_REG})
+#edit(%BOX[x:100,x1:100%-10,y:108,h:24],{%GV_PASSWORD})
 
 #txt(%BOX[x:10,y:142,w:100%,h:24],{},"Email:")
 #font(YF,YF,WF)
@@ -29,8 +28,13 @@
 
 #txt(%BOX[x:10,y:100%-50,w:100%,h:24],{},"Note: please use your own email to register. For password recovery write to dev.94.md@gmail.com from your registration email!")
 
+<? IF error ?>
+  #font(SYF,SWF,SWF)
+  #txt(%BOX[x:10,y:100%-60,w:100%,h:24],{},"error: <? error ?>")
+<? END ?>
+
 #font(YF,WF,RF)
 
 #exec(LW_gvar&%HEIGHT&Internet/Cash/height.dat)
-#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{GW|go&try_enter&NICK=<%GV_NICKNAME_REG>&TYPE=<? type ?>&PASSWORD=<%GV_PASSWORD_REG>&EMAIL=<%GV_EMAIL>&LOGGED_IN=<? logged_in ?>&HEIGHT:=&<@%HEIGHT>|LW_lockall},"Enter")
+#sbtn[%B_RGST](%BOX[x:0,y:100%+8,w:160,h:24],{GW|go&try_enter&NICK=<%GV_NICKNAME>&TYPE=<? type ?>&PASSWORD=<%GV_PASSWORD>&EMAIL=<%GV_EMAIL>&LOGGED_IN=<? logged_in ?>&HEIGHT:=&<@%HEIGHT>|LW_lockall},"Enter")
 #sbtn[%B_RGST](%BOX[x:185,y:100%+8,w:160,h:24],{LW_key&#CANCEL|LW_lockall},"Cancel")
