@@ -23,9 +23,9 @@
 #apan(%LBX[x:1,y:1,w:23,h:24],{LW_file&Internet/Cash/users_table_dgl.dcml},"0")
 <PLAYERS>
 #DBTBL[%PLST](%LBX[x:1,y:1,w:100%-30,h:100%],{players_list}{%PL_C},"<? server.config.table_timeout ?>",TBL_S,4,1,
-4,"#",INT,INT,NON,%PL_NUM,
+8,"#",INT,INT,NON,%PL_NUM,
 0,"ID",NON,NON,NON,%PL_ID,
-15,"Name",STR,STR,STR,%PL_NAME,
+25,"Name",STR,STR,STR,%PL_NAME,
 10,"Playtime",STR,STR,STR,%PL_TIME_PLAYED)
 #VSCROLL[%S1](%LBX[x:100%-30,y:1,w:30,h:100%],%PLST)
 <PLAYERS>
